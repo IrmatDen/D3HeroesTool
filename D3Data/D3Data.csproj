@@ -45,6 +45,8 @@
     <Compile Include="Career.cs" />
     <Compile Include="Converters\UnixTimestampConverter.cs" />
     <Compile Include="Deserializer.cs" />
+    <Compile Include="enums.cs" />
+    <Compile Include="HeroSummary.cs" />
     <Compile Include="IBNetService.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="KillStats.cs" />

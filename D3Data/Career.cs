@@ -18,6 +18,8 @@ namespace D3Data
 
         public KillStats kills { get; set; }
 
+        public SortedSet<HeroSummary> heroes { get; set; }
+
         public Career() { }
     }
 }
