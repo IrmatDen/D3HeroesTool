@@ -47,6 +47,7 @@
     <Compile Include="Deserializer.cs" />
     <Compile Include="IBNetService.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="KillStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

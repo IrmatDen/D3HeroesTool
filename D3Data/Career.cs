@@ -16,6 +16,8 @@ namespace D3Data
         [JsonConverter(typeof(Converters.UnixTimestampConverter))]
         public DateTime lastUpdated { get; set; }
 
+        public KillStats kills { get; set; }
+
         public Career() { }
     }
 }
