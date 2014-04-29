@@ -17,6 +17,10 @@ namespace D3Data
         public bool dead { get; set; }
         public Gender gender { get; set; }
 
+        [JsonProperty(PropertyName="last-updated")]
+        [JsonConverter(typeof(Converters.UnixTimestampConverter))]
+        public DateTime lastUpdated { get; set; }
+
         public HeroSummary() { }
 
         [OnDeserialized]
