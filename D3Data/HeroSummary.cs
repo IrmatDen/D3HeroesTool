@@ -22,7 +22,6 @@ namespace D3Data
         public DateTime lastUpdated { get; set; }
 
         [JsonProperty(PropertyName = "class")]
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public D3Class d3class { get; set; }
 
         public HeroSummary() { }
