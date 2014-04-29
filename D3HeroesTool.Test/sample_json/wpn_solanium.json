@@ -1,0 +1,359 @@
+{
+"id" : "Unique_Mace_1H_102_x1",
+"name" : "Solanium",
+"icon" : "unique_mace_1h_102_x1_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/CokBCODKjKEOEgcIBBV-Fl6RHfc9ijgdaklp6h2BgcbEHWYjBlAdZ70cYTCLAjj3AUAAUBJYBGD8AWorCgwIABCS9qKegICAwAgSGwib39u3CBIHCAQVI5aumDCPAjgAQAFYBJABAIABRo0Bd6cmTqUBaklp6q0BjBy-lrUBghhLnbgBlN_fhw3AAQIYg6aP6g1QAlgA",
+"requiredLevel" : 70,
+"itemLevel" : 34,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : true,
+"flavorText" : "This mace once belonged to a holy man who reluctantly took up arms against a demon invasion. As a worshiper of the sun, Graham called his weapon Solanium, meaning \"bearer of the sun's light.\" The longer Graham struggled against the forces of darkness, the more his faith grew infused within the mace, until the mundane object became an item of immense righteous power.",
+"transmogItem" : {
+"id" : "Unique_Sword_1H_003_x1",
+"name" : "The Ancient Bonesaber of Zumakalis",
+"icon" : "unique_sword_1h_003_x1_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/the-ancient-bonesaber-of-zumakalis",
+"requiredLevel" : 29,
+"itemLevel" : 31,
+"bonusAffixes" : 2,
+"bonusAffixesMax" : 2,
+"accountBound" : false,
+"flavorText" : "A mythical weapon, forged in a remote region to slay a monster of unspeakable power. The scrimshaw markings \"Em Ryog Elth'orp\" are nearly worn away.",
+"typeName" : "Legendary Sword",
+"type" : {
+"twoHanded" : false,
+"id" : "Sword"
+},
+"dps" : {
+"min" : 75.70499871075154,
+"max" : 76.43999869823456
+},
+"attacksPerSecond" : {
+"min" : 1.4419999754428865,
+"max" : 1.4559999752044679
+},
+"minDamage" : {
+"min" : 32.0,
+"max" : 32.0
+},
+"maxDamage" : {
+"min" : 73.0,
+"max" : 73.0
+},
+"attributes" : {
+"primary" : [ {
+"text" : "Increases Attack Speed by 3–4%",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Attacks_Per_Second_Item" : {
+"min" : 1.399999976158142,
+"max" : 1.399999976158142
+},
+"Damage_Weapon_Delta#Physical" : {
+"min" : 41.0,
+"max" : 41.0
+},
+"Durability_Max_Before_Reforge" : {
+"min" : 0.0,
+"max" : 0.0
+},
+"Durability_Max" : {
+"min" : 500.0,
+"max" : 1000.0
+},
+"Damage_Weapon_Min#Physical" : {
+"min" : 32.0,
+"max" : 32.0
+},
+"Attacks_Per_Second_Item_Percent" : {
+"min" : 0.03,
+"max" : 0.04
+},
+"Durability_Cur" : {
+"min" : 500.0,
+"max" : 1000.0
+}
+},
+"randomAffixes" : [ {
+"oneOf" : [ {
+"attributes" : {
+"primary" : [ {
+"text" : "+(3–6)–(7–14) Arcane Damage",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Damage_Weapon_Delta#Arcane" : {
+"min" : 4.0,
+"max" : 8.0
+},
+"Damage_Weapon_Min#Arcane" : {
+"min" : 3.0,
+"max" : 6.0
+}
+}
+}, {
+"attributes" : {
+"primary" : [ {
+"text" : "+(32–39)–(39–49) Arcane Damage",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Damage_Weapon_Delta#Arcane" : {
+"min" : 7.0,
+"max" : 10.0
+},
+"Damage_Weapon_Min#Arcane" : {
+"min" : 32.0,
+"max" : 39.0
+}
+}
+} ]
+}, {
+"oneOf" : [ {
+"attributes" : {
+"primary" : [ {
+"text" : "+128–163 Dexterity",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Dexterity_Item" : {
+"min" : 128.0,
+"max" : 163.0
+}
+}
+}, {
+"attributes" : {
+"primary" : [ {
+"text" : "+128–163 Strength",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Strength_Item" : {
+"min" : 128.0,
+"max" : 163.0
+}
+}
+}, {
+"attributes" : {
+"primary" : [ {
+"text" : "+128–163 Intelligence",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Intelligence_Item" : {
+"min" : 128.0,
+"max" : 163.0
+}
+}
+} ]
+}, {
+"oneOf" : [ {
+"attributes" : {
+"primary" : [ {
+"text" : "+17–26 Life per Hit",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Hitpoints_On_Hit" : {
+"min" : 17.0,
+"max" : 26.0
+}
+}
+}, {
+"attributes" : {
+"primary" : [ {
+"text" : "+47–56 Life per Hit",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Hitpoints_On_Hit" : {
+"min" : 47.0,
+"max" : 56.0
+}
+}
+} ]
+} ],
+"gems" : [ ],
+"socketEffects" : [ ],
+"craftedBy" : [ ]
+},
+"typeName" : "Legendary Mace",
+"type" : {
+"twoHanded" : false,
+"id" : "Mace"
+},
+"dps" : {
+"min" : 2134.2000848054886,
+"max" : 2134.2000848054886
+},
+"attacksPerSecond" : {
+"min" : 1.2000000476837158,
+"max" : 1.2000000476837158
+},
+"minDamage" : {
+"min" : 316.0,
+"max" : 316.0
+},
+"maxDamage" : {
+"min" : 585.0,
+"max" : 585.0
+},
+"attributes" : {
+"primary" : [ {
+"text" : "+1195–1461 Holy Damage",
+"affixType" : "default",
+"color" : "blue"
+}, {
+"text" : "+727 Strength",
+"affixType" : "default",
+"color" : "blue"
+}, {
+"text" : "Reduces all resource costs by 10%.",
+"affixType" : "enchant",
+"color" : "blue"
+} ],
+"secondary" : [ {
+"text" : "1.6% Chance to Chill on Hit",
+"affixType" : "utility",
+"color" : "blue"
+} ],
+"passive" : [ {
+"text" : "Critical Hits have a 3% chance to spawn a health globe.",
+"affixType" : "default",
+"color" : "orange"
+} ]
+},
+"attributesRaw" : {
+"Item_LegendaryItem_Level_Override" : {
+"min" : 70.0,
+"max" : 70.0
+},
+"Attacks_Per_Second_Item" : {
+"min" : 1.2000000476837158,
+"max" : 1.2000000476837158
+},
+"Item_Legendary_Item_Base_Item" : {
+"min" : -1.65602291E9,
+"max" : -1.65602291E9
+},
+"Durability_Max_Before_Reforge" : {
+"min" : 252.0,
+"max" : 252.0
+},
+"Weapon_On_Hit_Chill_Proc_Chance" : {
+"min" : 0.01629999999999998,
+"max" : 0.01629999999999998
+},
+"Damage_Weapon_Min#Physical" : {
+"min" : 316.0,
+"max" : 316.0
+},
+"Strength_Item" : {
+"min" : 727.0,
+"max" : 727.0
+},
+"Item_Binding_Level_Override" : {
+"min" : 2.0,
+"max" : 2.0
+},
+"Damage_Weapon_Min#Holy" : {
+"min" : 1195.0,
+"max" : 1195.0
+},
+"Item_Power_Passive#ItemPassive_Unique_Ring_677_x1" : {
+"min" : 0.03,
+"max" : 0.03
+},
+"Damage_Weapon_Delta#Holy" : {
+"min" : 266.0,
+"max" : 266.0
+},
+"Damage_Weapon_Delta#Physical" : {
+"min" : 269.0,
+"max" : 269.0
+},
+"Sockets" : {
+"min" : 1.0,
+"max" : 1.0
+},
+"Durability_Max" : {
+"min" : 252.0,
+"max" : 252.0
+},
+"Season" : {
+"min" : 0.0,
+"max" : 0.0
+},
+"Resource_Cost_Reduction_Percent_All" : {
+"min" : 0.09999999999999998,
+"max" : 0.09999999999999998
+},
+"Durability_Cur" : {
+"min" : 247.0,
+"max" : 247.0
+}
+},
+"randomAffixes" : [ ],
+"gems" : [ {
+"item" : {
+"id" : "Emerald_19",
+"name" : "Flawless Royal Emerald",
+"icon" : "emerald_19_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/ChsIm9_btwgSBwgEFSOWrpgwjwI4AEABWASQAQAYuaeL9Qw"
+},
+"attributes" : {
+"primary" : [ {
+"text" : "Critical Hit Damage Increased by 130.0%",
+"affixType" : "default",
+"color" : "blue"
+} ],
+"secondary" : [ ],
+"passive" : [ ]
+},
+"attributesRaw" : {
+"Crit_Damage_Percent" : {
+"min" : 1.3,
+"max" : 1.3
+}
+}
+} ],
+"socketEffects" : [ ],
+"craftedBy" : [ ]
+}
