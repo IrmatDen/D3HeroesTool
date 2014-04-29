@@ -13,13 +13,17 @@ namespace D3Data
         public int id { get; set; }
         public string name { get; set; }
         public int level { get; set; }
-        public bool hardcore{ get; set; }
+        public bool hardcore { get; set; }
         public bool dead { get; set; }
         public Gender gender { get; set; }
 
         [JsonProperty(PropertyName="last-updated")]
         [JsonConverter(typeof(Converters.UnixTimestampConverter))]
         public DateTime lastUpdated { get; set; }
+
+        [JsonProperty(PropertyName = "class")]
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public D3Class d3class { get; set; }
 
         public HeroSummary() { }
 

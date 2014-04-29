@@ -68,5 +68,15 @@ namespace D3HeroesTool.Test
             D3Data.Career c = D3Data.Deserializer.AsCareer("{ 'heroes': [ { 'last-updated':1398727307 } ] }");
             Assert.AreEqual(DateTime.Parse("2014-04-28 23:21:47.000"), c.heroes.First().lastUpdated);
         }
+
+        [Test]
+        public void d3class()
+        {
+            D3Data.Career c = D3Data.Deserializer.AsCareer("{ 'heroes': [ { 'class':'barbarian' } ] }");
+            Assert.AreEqual(D3Data.D3Class.Barbarian, c.heroes.First().d3class);
+
+            c = D3Data.Deserializer.AsCareer("{ 'heroes': [ { 'class':'witch-doctor' } ] }");
+            Assert.AreEqual(D3Data.D3Class.WitchDoctor, c.heroes.First().d3class);
+        }
     }
 }
