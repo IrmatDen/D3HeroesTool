@@ -65,6 +65,7 @@
     <Compile Include="DeserializeHeroSummaryTests.cs" />
     <Compile Include="DeserializeKillStatsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleBiMapTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -73,6 +74,10 @@
     <ProjectReference Include="..\D3Data\D3Data.csproj">
       <Project>{b80ee2ff-2307-49b1-ac5d-9162a3d29f44}</Project>
       <Name>D3Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\D3HeroesTool\D3HeroesTool.csproj">
+      <Project>{c3ac5fb2-f53a-41e1-9a71-e5a46266d240}</Project>
+      <Name>D3HeroesTool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
