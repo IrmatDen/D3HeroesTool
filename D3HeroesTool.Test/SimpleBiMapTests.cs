@@ -106,5 +106,27 @@ namespace D3HeroesTool.Test
             Assert.AreEqual(true, ((IBiMap)bm).TryGetByRight(42, out theQuestion));
             Assert.AreEqual("answer", (string)theQuestion);
         }
+
+        [Test]
+        public void Test_LeftValues()
+        {
+            SimpleBiMap<string, int> bm = new SimpleBiMap<string, int>();
+            bm.Add("answer", 42);
+            bm.Add("answer²", 42 * 42);
+
+            string[] exp_lvalues = new string[] { "answer", "answer²" };
+            Assert.That(bm.LeftValues, Is.EquivalentTo(exp_lvalues));
+        }
+
+        [Test]
+        public void Test_RightValues()
+        {
+            SimpleBiMap<string, int> bm = new SimpleBiMap<string, int>();
+            bm.Add("answer", 42);
+            bm.Add("answer²", 42 * 42);
+
+            int[] exp_rvalues = new int[] { 42, 1764 };
+            Assert.That(bm.RightValues, Is.EquivalentTo(exp_rvalues));
+        }
     }
 }

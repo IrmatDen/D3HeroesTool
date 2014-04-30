@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace D3HeroesTool.Utils
 {
+    // Greatly inspired by Jon Skeet's post: http://stackoverflow.com/a/255630
+
     /// <summary>
     /// Doesn't feel as right as templated interface, but makes it usable from reflection code
     /// </summary>
     public interface IBiMap
     {
+        // We don't really need LeftKeys nor RightKeys since they're both Values of each other
+        IEnumerable LeftValues { get; }
+        IEnumerable RightValues { get; }
+
         void Add(object left, object right);
         bool TryGetByLeft(object leftKey, out object rightValue);
         bool TryGetByRight(object rightKey, out object leftValue);
@@ -21,6 +27,9 @@ namespace D3HeroesTool.Utils
     {
         IDictionary<LeftType, RightType> leftToRight = new Dictionary<LeftType, RightType>();
         IDictionary<RightType, LeftType> rightToLeft = new Dictionary<RightType, LeftType>();
+
+        public IEnumerable LeftValues { get { return leftToRight.Keys; } }
+        public IEnumerable RightValues { get { return rightToLeft.Keys; } }
 
         public int Count { get { return leftToRight.Count; } }
 
