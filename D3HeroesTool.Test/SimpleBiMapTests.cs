@@ -76,5 +76,35 @@ namespace D3HeroesTool.Test
             string theQuestion;
             Assert.AreEqual(false, bm.TryGetByRight(21, out theQuestion));
         }
+
+        [Test]
+        public void Test_Add_Using_Explicit_IBimap()
+        {
+            SimpleBiMap<string, int> bm = new SimpleBiMap<string, int>();
+            ((IBiMap)bm).Add("answer", 42);
+            Assert.AreEqual(1, bm.Count);
+        }
+
+        [Test]
+        public void Test_ByLeft_Using_Explicit_IBimap()
+        {
+            SimpleBiMap<string, int> bm = new SimpleBiMap<string, int>();
+            ((IBiMap)bm).Add("answer", 42);
+
+            object theAnswer;
+            Assert.AreEqual(true, ((IBiMap)bm).TryGetByLeft("answer", out theAnswer));
+            Assert.AreEqual(42, (int)theAnswer);
+        }
+
+        [Test]
+        public void Test_ByRight_Using_Explicit_IBimap()
+        {
+            SimpleBiMap<string, int> bm = new SimpleBiMap<string, int>();
+            ((IBiMap)bm).Add("answer", 42);
+
+            object theQuestion;
+            Assert.AreEqual(true, ((IBiMap)bm).TryGetByRight(42, out theQuestion));
+            Assert.AreEqual("answer", (string)theQuestion);
+        }
     }
 }
