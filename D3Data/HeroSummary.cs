@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace D3Data
 {
-    public class HeroSummary
+    public class HeroSummary : IComparable
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -25,6 +25,11 @@ namespace D3Data
         public D3Class d3class { get; set; }
 
         public HeroSummary() { }
+
+        public int CompareTo(Object other)
+        {
+            return id.CompareTo((other as HeroSummary).id);
+        }
 
         [OnDeserialized]
         internal void OnDeserialized(StreamingContext context)
