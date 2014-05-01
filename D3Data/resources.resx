@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="D3Server_CN" xml:space="preserve">
+    <value>China</value>
+  </data>
+  <data name="D3Server_EU" xml:space="preserve">
+    <value>Europe</value>
+  </data>
+  <data name="D3Server_KR" xml:space="preserve">
+    <value>Korea</value>
+  </data>
+  <data name="D3Server_TW" xml:space="preserve">
+    <value>Taiwan</value>
+  </data>
+  <data name="D3Server_US" xml:space="preserve">
+    <value>America</value>
+  </data>
 </root>

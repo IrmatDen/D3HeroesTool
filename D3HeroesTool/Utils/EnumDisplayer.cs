@@ -20,6 +20,7 @@ namespace D3HeroesTool.Utils
         private IBiMap enumMappings; // Will store <string, enum_values>
         private ResourceManager rm;
 
+        public string ResourcesPath { get; set; }
         public Type Type
         {
             get { return type; }
@@ -65,7 +66,7 @@ namespace D3HeroesTool.Utils
             if (!string.IsNullOrEmpty(dsa.ResourceKey))
             {
                 if (rm == null)
-                    rm = new ResourceManager(this.type);
+                    rm = new ResourceManager(ResourcesPath, type.Assembly);
                 return rm.GetString(dsa.ResourceKey);
             }
 
