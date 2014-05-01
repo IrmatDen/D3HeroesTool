@@ -47,6 +47,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -57,6 +58,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utils\BattleTagValidator.cs" />
+    <Compile Include="Utils\ComboBoxExtensionMethods.cs" />
+    <Compile Include="Utils\ComboBoxWidthFromItemBehavior.cs" />
     <Compile Include="Utils\EnumDisplayer.cs" />
     <Compile Include="Utils\SimpleBiMap.cs" />
     <Compile Include="Utils\ValidationErrorConverter.cs" />
