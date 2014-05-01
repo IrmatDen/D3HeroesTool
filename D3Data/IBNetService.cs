@@ -22,18 +22,31 @@ namespace D3Data
 
     public enum Locale
     {
+        [Attributes.DisplayString(ResourceKey = "D3Loc_en_US")]
         en_US,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_en_GB")]
         en_GB,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_es_MX")]
         es_MX,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_es_ES")]
         es_ES,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_it_IT")]
         it_IT,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_pt_PT")]
         pt_PT,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_fr_FR")]
         fr_FR,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_de_DE")]
         de_DE,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_pl_PL")]
         pl_PL,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_ru_RU")]
         ru_RU,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_ko_KR")]
         ko_KR,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_zh_TW")]
         zh_TW,
+        [Attributes.DisplayString(ResourceKey = "D3Loc_zh_CN")]
         zh_CN
     };
 

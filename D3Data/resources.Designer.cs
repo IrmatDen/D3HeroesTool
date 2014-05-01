@@ -61,6 +61,123 @@ namespace D3Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deutsch.
+        /// </summary>
+        public static string D3Loc_de_DE {
+            get {
+                return ResourceManager.GetString("D3Loc_de_DE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English (Great Britain).
+        /// </summary>
+        public static string D3Loc_en_GB {
+            get {
+                return ResourceManager.GetString("D3Loc_en_GB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English (United States).
+        /// </summary>
+        public static string D3Loc_en_US {
+            get {
+                return ResourceManager.GetString("D3Loc_en_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Español.
+        /// </summary>
+        public static string D3Loc_es_ES {
+            get {
+                return ResourceManager.GetString("D3Loc_es_ES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Español (Mexican).
+        /// </summary>
+        public static string D3Loc_es_MX {
+            get {
+                return ResourceManager.GetString("D3Loc_es_MX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Français.
+        /// </summary>
+        public static string D3Loc_fr_FR {
+            get {
+                return ResourceManager.GetString("D3Loc_fr_FR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italiano.
+        /// </summary>
+        public static string D3Loc_it_IT {
+            get {
+                return ResourceManager.GetString("D3Loc_it_IT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 한국어.
+        /// </summary>
+        public static string D3Loc_ko_KR {
+            get {
+                return ResourceManager.GetString("D3Loc_ko_KR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polski.
+        /// </summary>
+        public static string D3Loc_pl_PL {
+            get {
+                return ResourceManager.GetString("D3Loc_pl_PL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Português.
+        /// </summary>
+        public static string D3Loc_pt_PT {
+            get {
+                return ResourceManager.GetString("D3Loc_pt_PT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Русский.
+        /// </summary>
+        public static string D3Loc_ru_RU {
+            get {
+                return ResourceManager.GetString("D3Loc_ru_RU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 简体中文.
+        /// </summary>
+        public static string D3Loc_zh_CN {
+            get {
+                return ResourceManager.GetString("D3Loc_zh_CN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 正體中文.
+        /// </summary>
+        public static string D3Loc_zh_TW {
+            get {
+                return ResourceManager.GetString("D3Loc_zh_TW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to China.
         /// </summary>
         public static string D3Server_CN {
