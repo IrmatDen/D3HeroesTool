@@ -90,6 +90,9 @@ namespace D3HeroesTool.Utils
         /// <returns>string, or throws</returns>
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+                return null;
+
             object displayedString;
             if (!enumMappings.TryGetByRight(value, out displayedString))
                 throw new Exception(String.Format("Unknown enum value {0}", value.ToString()));
