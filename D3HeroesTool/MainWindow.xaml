@@ -1,9 +1,11 @@
-﻿<Window x:Class="D3HeroesTool.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:D3HeroesTool" x:Class="D3HeroesTool.MainWindow"
+        xmlns:c="clr-namespace:D3HeroesTool"
         Title="D3Heroes" Height="458.955" Width="777.239" SizeToContent="WidthAndHeight">
     <StackPanel Margin="5" >
-        <Grid Height="78">
+        <Grid Name="pnlServiceInfo" Height="78">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -15,12 +17,18 @@
                 <ColumnDefinition Width="359*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Server:" Margin="5" />
-            <ComboBox Name="cbServer" ItemsSource="{Binding Source={StaticResource ServersED}, Path=DisplayNames}" Grid.Column="1" Margin="5" />
+            <ComboBox x:Name="cbServer" ItemsSource="{Binding DisplayNames, Source={StaticResource ServersED}}"
+                SelectedValue="{Binding Server, Converter={StaticResource ServersED}}"
+                Grid.Column="1" Margin="5" >
+            </ComboBox>
             <Label Content="Battle tag:" Grid.Column="2" Margin="5"/>
-            <TextBox Name="tbBattleTag" Grid.Column="3" Margin="5" />
+            <TextBox x:Name="tbBattleTag" Text="{Binding BattleTag}" Grid.Column="3" Margin="5" />
             <Label Content="Language:" Grid.Row="1" Margin="5"/>
-            <ComboBox Name="cbLocale" Grid.Column="1" Grid.Row="1" Margin="5"/>
-            <Button Content="Invoke this hero!" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="5"/>
+            <ComboBox x:Name="cbLocale" ItemsSource="{Binding DisplayNames, Source={StaticResource LocalesED}}"
+                SelectedValue="{Binding Locale, Converter={StaticResource LocalesED}}"
+                Grid.Column="1" Grid.Row="1" Margin="5"/>
+            <Button Name="btnInvoke" Content="Invoke this hero!" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Margin="5"/>
         </Grid>
+        <TextBlock x:Name="tbDebug" TextWrapping="Wrap" Text="{Binding BattleTag}"/>
     </StackPanel>
 </Window>
