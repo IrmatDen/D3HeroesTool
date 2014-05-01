@@ -5,6 +5,7 @@
              xmlns:d3d="clr-namespace:D3Data;assembly=D3Data"
              StartupUri="MainWindow.xaml" Startup="Application_Startup">
     <Application.Resources>
+        <d3htu:ValidationErrorConverter x:Key="ValidationErrorConverter" />
         <d3htu:EnumDisplayer Type="{x:Type d3d:Server}" ResourcesPath="D3Data.resources" x:Key="ServersED" />
         <d3htu:EnumDisplayer Type="{x:Type d3d:Locale}" ResourcesPath="D3Data.resources" x:Key="LocalesED" />
     </Application.Resources>
