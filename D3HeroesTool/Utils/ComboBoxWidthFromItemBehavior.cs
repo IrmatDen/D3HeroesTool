@@ -27,14 +27,6 @@ namespace D3HeroesTool.Utils
                 new UIPropertyMetadata(false, OnComboBoxWidthFromItemsPropertyChanged)
             );
 
-        public static readonly DependencyProperty ComboBoxWidthFromItemRestrictMaxWidthProperty =
-            DependencyProperty.RegisterAttached(
-                "ComboBoxRestrictMaxWidthFromItems",
-                typeof(bool),
-                typeof(ComboBoxWidthFromItemBehavior),
-                new UIPropertyMetadata(false, OnComboBoxWidthFromItemsPropertyChanged)
-            );
-
         public static bool GetComboBoxWidthFromItems(DependencyObject d)
         {
             return (bool)d.GetValue(ComboBoxWidthFromItemProperty);
@@ -55,16 +47,6 @@ namespace D3HeroesTool.Utils
             d.SetValue(ComboBoxWidthFromItemRestrictMinWidthProperty, value);
         }
 
-        public static bool GetComboBoxRestrictMaxWidthFromItems(DependencyObject d)
-        {
-            return (bool)d.GetValue(ComboBoxWidthFromItemRestrictMaxWidthProperty);
-        }
-
-        public static void SetComboBoxRestrictMaxWidthFromItems(DependencyObject d, bool value)
-        {
-            d.SetValue(ComboBoxWidthFromItemRestrictMaxWidthProperty, value);
-        }
-
         private static void OnComboBoxWidthFromItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ComboBox cb = d as ComboBox;
@@ -82,9 +64,8 @@ namespace D3HeroesTool.Utils
             ComboBox cb = sender as ComboBox;
 
             bool restrictMin = GetComboBoxRestrictMinWidthFromItems(cb);
-            bool restrictMax = GetComboBoxRestrictMaxWidthFromItems(cb);
 
-            Action sizeOnIdle = new Action(() => { cb.SetWidthFromItems(restrictMin, restrictMax); });
+            Action sizeOnIdle = new Action(() => { cb.SetWidthFromItems(restrictMin); });
             cb.Dispatcher.BeginInvoke(sizeOnIdle, DispatcherPriority.ApplicationIdle);
         }
     }

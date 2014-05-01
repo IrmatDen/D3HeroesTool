@@ -18,7 +18,7 @@ namespace D3HeroesTool.Utils
         /// </list>
         /// </summary>
         /// <param name="cb"></param>
-        public static void SetWidthFromItems(this ComboBox cb, bool restrictMinWidth, bool restrictMaxWidth)
+        public static void SetWidthFromItems(this ComboBox cb, bool restrictMinWidth)
         {
             double cbWidth = 19; // combobox dropdown button?
 
@@ -44,11 +44,11 @@ namespace D3HeroesTool.Utils
                                 biggestItemWidth = cbItem.DesiredSize.Width;
                         }
 
-                        cb.Width = cbWidth + biggestItemWidth;
+                        double desiredWith = cbWidth + biggestItemWidth;
+                        if (cb.Width < desiredWith)
+                            cb.Width = desiredWith;
                         if (restrictMinWidth)
-                            cb.MinWidth = cb.Width;
-                        if (restrictMaxWidth)
-                            cb.MaxWidth = cb.Width;
+                            cb.MinWidth = desiredWith;
 
                         cb.ItemContainerGenerator.StatusChanged -= evtHandler;
                         cb.DropDownOpened -= evtHandler;
