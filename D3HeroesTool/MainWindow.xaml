@@ -54,7 +54,7 @@
             <Label Content="Battle tag:" Grid.Column="2" Margin="5" Grid.IsSharedSizeScope="True"/>
             <TextBox x:Name="tbBattleTag" Grid.Column="3" Margin="5" Style="{StaticResource validatedTextBox}"
                      Validation.ErrorTemplate="{StaticResource validationTemplate}" Grid.IsSharedSizeScope="True"
-                     MaxWidth="Infinity" MinWidth="125">
+                     MaxWidth="Infinity" MinWidth="125" VerticalContentAlignment="Center">
                 <TextBox.Text>
                     <Binding Path="BattleTag" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>

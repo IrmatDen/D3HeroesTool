@@ -48,5 +48,19 @@ namespace D3HeroesTool.Test
             string displ = ((IValueConverter)ed).Convert(Heroes.Yoda, null, null, null) as string;
             Assert.AreEqual("Yoda", displ);
         }
+
+        [Test]
+        public void Test_EnumFromString_WhenKnown()
+        {
+            Heroes? value = ((IValueConverter)ed).ConvertBack("Doctor? Doctor Who?", null, null, null) as Heroes?;
+            Assert.AreEqual(Heroes.DrWho, value);
+        }
+
+        [Test]
+        public void Test_EnumFromString_WhenUnknown()
+        {
+            Heroes? value = ((IValueConverter)ed).ConvertBack("Yoda", null, null, null) as Heroes?;
+            Assert.AreEqual(Heroes.Yoda, value);
+        }
     }
 }

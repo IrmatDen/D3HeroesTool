@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3HeroesTool", "D3HeroesTool\D3HeroesTool.csproj", "{C3AC5FB2-F53A-41E1-9A71-E5A46266D240}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3HeroesTool.Test", "D3HeroesTool.Test\D3HeroesTool.Test.csproj", "{BE4A75B5-D040-4C13-8C44-2402A5466AB6}"
