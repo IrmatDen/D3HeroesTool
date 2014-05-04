@@ -36,6 +36,7 @@ namespace D3HeroesTool.Test
 
             int theAnswer;
             Assert.AreEqual(true, bm.TryGetByLeft("answer", out theAnswer));
+            Assert.AreEqual(42, theAnswer);
         }
 
         [Test]
@@ -46,6 +47,7 @@ namespace D3HeroesTool.Test
 
             string theQuestion;
             Assert.AreEqual(true, bm.TryGetByRight(42, out theQuestion));
+            Assert.AreEqual("answer", theQuestion);
         }
 
         [Test]
