@@ -117,4 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BattleTag" xml:space="preserve">
+    <value>BattleTag:</value>
+    <comment>Main window's BattleTag label</comment>
+  </data>
+  <data name="errRetrievingProfile" xml:space="preserve">
+    <value>Couldn't retrieve your profile. Please check your server and battletag.</value>
+    <comment>Error happened while loading career</comment>
+  </data>
+  <data name="InvokeHeroes" xml:space="preserve">
+    <value>Invoke my heroes!</value>
+    <comment>Main window's load career button</comment>
+  </data>
+  <data name="Locale" xml:space="preserve">
+    <value>Locale:</value>
+    <comment>Main window's Locale label</comment>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server:</value>
+    <comment>Main window's Server label</comment>
+  </data>
 </root>
