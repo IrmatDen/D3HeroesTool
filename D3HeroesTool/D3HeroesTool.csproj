@@ -58,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataContract.cs" />
     <Compile Include="ServiceInfo.cs" />
     <Compile Include="Utils\BattleTagValidator.cs" />
     <Compile Include="Utils\ComboBoxExtensionMethods.cs" />

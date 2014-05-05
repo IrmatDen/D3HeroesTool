@@ -31,8 +31,10 @@ namespace D3HeroesTool
         {
             saveServiceInfoSettings();
 
+            string errMsg = "Couldn't retrieve your profile. Please check your server and battletag.";
             App.ActiveBNet.Setup(si.Server, si.BattleTag, si.Locale);
-            App.ActiveBNet.GetCareer((string json) => { tbDebug.Text = json; }, () => { });
+            App.ActiveBNet.GetCareer((string json) => { tbDebug.Text = json; },
+                                     () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); });
         }
 
         private void tryLoadServiceInfoSettings()
