@@ -14,16 +14,16 @@ namespace D3HeroesTool
     /// </summary>
     public partial class App : Application
     {
-        public D3Data.IBNetService ActiveBNet;
+        public static D3Data.IBNetService ActiveBNet;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             if (e.Args.Any(arg => arg == "--filesystem"))
             {
                 FSBNetService serv = new FSBNetService();
-                serv.RootFolder = Directory.GetCurrentDirectory() + "\\sample_jsons";
+                serv.RootFolder = Directory.GetCurrentDirectory() + "\\cache";
                 if (!Directory.Exists(serv.RootFolder))
-                    throw new Exception("--filesystem can only be used from a folder containing the sample_jsons subfolder");
+                    throw new Exception("--filesystem can only be used from a folder containing the cache subfolder");
 
                 ActiveBNet = serv;
             }
