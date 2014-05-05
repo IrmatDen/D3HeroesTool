@@ -59,50 +59,5 @@ namespace D3HeroesTool.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to BattleTag:.
-        /// </summary>
-        public static string BattleTag {
-            get {
-                return ResourceManager.GetString("BattleTag", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Couldn&apos;t retrieve your profile. Please check your server and battletag..
-        /// </summary>
-        public static string errRetrievingProfile {
-            get {
-                return ResourceManager.GetString("errRetrievingProfile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invoke my heroes!.
-        /// </summary>
-        public static string InvokeHeroes {
-            get {
-                return ResourceManager.GetString("InvokeHeroes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locale:.
-        /// </summary>
-        public static string Locale {
-            get {
-                return ResourceManager.GetString("Locale", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Server:.
-        /// </summary>
-        public static string Server {
-            get {
-                return ResourceManager.GetString("Server", resourceCulture);
-            }
-        }
     }
 }

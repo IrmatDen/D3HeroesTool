@@ -21,6 +21,15 @@ namespace D3HeroesTool
         {
             tryLoadServiceInfoSettings();
 
+            si.PropertyChanged += (object sender, PropertyChangedEventArgs args) =>
+                {
+                    if (args.PropertyName == "Locale")
+                    {
+                        string bnetLocale = si.Locale.ToString();
+                        App.Instance.SwitchLanguage(bnetLocale.Replace("_", "-"));
+                    }
+                };
+
             InitializeComponent();
 
             pnlServiceInfo.DataContext = si;
@@ -31,7 +40,7 @@ namespace D3HeroesTool
         {
             saveServiceInfoSettings();
 
-            string errMsg = Properties.Resources.errRetrievingProfile;
+            string errMsg = (string)Application.Current.FindResource("errRetrievingProfile");
             App.ActiveBNet.Setup(si.Server, si.BattleTag, si.Locale);
             App.ActiveBNet.GetCareer((string json) => { tbDebug.Text = json; },
                                      () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); });
