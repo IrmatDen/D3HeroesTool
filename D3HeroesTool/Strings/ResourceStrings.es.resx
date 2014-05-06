@@ -117,4 +117,19 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+	<data name="btnInvoke" xml:space="preserve">
+    <value>Invoque mis héroes!</value>
+  </data>
+	<data name="errRetrievingProfile" xml:space="preserve">
+    <value>No se pudo recuperar tu perfil. Por favor, compruebe su servidor y BattleTag.</value>
+  </data>
+	<data name="lblBattleTag" xml:space="preserve">
+    <value>Battle tag:</value>
+  </data>
+	<data name="lblLocale" xml:space="preserve">
+    <value>Lengua:</value>
+  </data>
+	<data name="lblServer" xml:space="preserve">
+    <value>Servidor:</value>
+  </data>
 </root>

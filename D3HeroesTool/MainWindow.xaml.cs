@@ -1,10 +1,14 @@
-﻿using System;
+﻿using D3HeroesTool.Utils;
+using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using WPFLocalizeExtension.Engine;
 
 namespace D3HeroesTool
 {
@@ -21,14 +25,7 @@ namespace D3HeroesTool
         {
             tryLoadServiceInfoSettings();
 
-            si.PropertyChanged += (object sender, PropertyChangedEventArgs args) =>
-                {
-                    if (args.PropertyName == "Locale")
-                    {
-                        string bnetLocale = si.Locale.ToString();
-                        App.Instance.SwitchLanguage(bnetLocale.Replace("_", "-"));
-                    }
-                };
+            si.PropertyChanged += (sender, args) => { if (args.PropertyName == "Locale") updateCulture(); };
 
             InitializeComponent();
 
@@ -36,11 +33,24 @@ namespace D3HeroesTool
             tbDebug.DataContext = si;
         }
 
+        private void updateCulture()
+        {
+            string bnetLocale = si.Locale.ToString().Replace("_", "-");
+            LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo(bnetLocale);
+
+            // Binded through an IValueConverter, so we have to trigger update ourselves
+            cbServer.GetBindingExpression(ComboBox.ItemsSourceProperty).UpdateTarget();
+            cbServer.GetBindingExpression(ComboBox.SelectedValueProperty).UpdateTarget();
+
+            // NB: we don't update cbLocale since strings are already localized (+ it would trigger infinite recursion)
+        }
+
         private void btnInvoke_Click(object sender, RoutedEventArgs e)
         {
             saveServiceInfoSettings();
 
-            string errMsg = (string)Application.Current.FindResource("errRetrievingProfile");
+            string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
+                                                                                   LocalizeDictionary.Instance.Culture);
             App.ActiveBNet.Setup(si.Server, si.BattleTag, si.Locale);
             App.ActiveBNet.GetCareer((string json) => { tbDebug.Text = json; },
                                      () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); });
@@ -57,6 +67,8 @@ namespace D3HeroesTool
                 using (Stream inStream = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     si = (ServiceInfo)deserializer.ReadObject(inStream);
+                    string bnetLocale = si.Locale.ToString().Replace("_", "-");
+                    LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo(bnetLocale);
                 }
             }
             catch(Exception)

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project>
+  <configuration createBackupFiles="False" hideEmptyRows="False" hideTranslatedRows="False" useSpellChecker="True" neutralLanguageCode="en-US" languagesToDisplay="">
+    <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items&gt;&lt;item type="2" checksum="5429348021" /&gt;&lt;/items&gt;</globalSetting>
+    <globalSetting name="Filter-ResourceEditorGrid">&lt;XtraSerializer version="1.0" application="View"&gt;
+  &lt;property name="#LayoutVersion" /&gt;
+  &lt;property name="ActiveFilterString" /&gt;
+&lt;/XtraSerializer&gt;</globalSetting>
+    <globalSetting name="Sort-ResourceEditorGrid">&lt;XtraSerializer version="1.0" application="View"&gt;
+  &lt;property name="#LayoutVersion" /&gt;
+&lt;/XtraSerializer&gt;</globalSetting>
+    <globalSetting name="autoTranslateForm.prefixTextBox.Text">####</globalSetting>
+    <globalSetting name="autoTranslateForm.prefixCheckBox.Checked">False</globalSetting>
+    <globalSetting name="autoTranslateForm.referenceLanguageComboBoxEdit.SelectedIndex">-1</globalSetting>
+    <globalSetting name="autoTranslateForm.languagesToTranslateCheckListBox">
+    </globalSetting>
+    <globalSetting name="CreateNewFileForm.prefixTextBox.Text">####</globalSetting>
+    <globalSetting name="CreateNewFileForm.prefixCheckBox.Checked">False</globalSetting>
+    <globalSetting name="CreateNewFileForm.referenceLanguageComboBox.SelectedIndex">0</globalSetting>
+    <globalSetting name="CreateNewFileForm.newLanguageComboBox.SelectedIndex">116</globalSetting>
+    <globalSetting name="CreateNewFileForm.copyTextsCheckBox.Checked">True</globalSetting>
+    <globalSetting name="CreateNewFileForm.automaticallyTranslateCheckBox.Checked">False</globalSetting>
+    <userSetting name="IrmatDen@IrmatDen-PC.RecentFiles">F:\src\D3HeroesTool\D3HeroesTool\Strings\ResourceStrings.resx;F:\src\D3HeroesTool\D3HeroesTool\Strings\ResourceStrings.es-ES.resx;F:\src\D3HeroesTool\D3HeroesTool\Strings\ResourceStrings.fr-FR.resx</userSetting>
+    <userSetting name="IrmatDen@IrmatDen-PC.filesInitialDir">F:\src\D3HeroesTool\D3Data</userSetting>
+    <userSetting name="IrmatDen@IrmatDen-PC.FindText">
+    </userSetting>
+    <description>
+    </description>
+  </configuration>
+  <fileGroups>
+    <fileGroup name="" projectFolderUniqueID="1b6da8f1-76f3-41cd-8c74-e6d845a5d36a" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="1711520a-d533-4046-b7dc-c49bc8b12aa1">
+      <file filePath="D3HeroesTool\Properties\Resources.resx" absoluteFilePath="F:\src\D3HeroesTool\D3HeroesTool\Properties\Resources.resx" uniqueID="b3a57d82-ef4d-4bb4-9035-b9a5d51473c1" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="1b6da8f1-76f3-41cd-8c74-e6d845a5d36a" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="607f814a-6ba6-4e0f-b07e-131795ead889">
+      <file filePath="D3HeroesTool\Strings\ResourceStrings.resx" absoluteFilePath="F:\src\D3HeroesTool\D3HeroesTool\Strings\ResourceStrings.resx" uniqueID="ce63f5ee-8f9b-4771-90c0-70117e2d4379" />
+      <file filePath="D3HeroesTool\Strings\ResourceStrings.fr-FR.resx" absoluteFilePath="F:\src\D3HeroesTool\D3HeroesTool\Strings\ResourceStrings.fr-FR.resx" uniqueID="ffff890f-df03-46a0-b3f6-79a78eaf4af6" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="f147bf88-a338-449b-9b30-65d59467a3fb" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+      <file filePath="D3Data\resources.resx" absoluteFilePath="F:\src\D3HeroesTool\D3Data\resources.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <file filePath="D3Data\resources.fr.resx" absoluteFilePath="F:\src\D3HeroesTool\D3Data\resources.fr.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+  </fileGroups>
+  <projectFolders>
+    <projectFolder uniqueID="f147bf88-a338-449b-9b30-65d59467a3fb" parentUniqueID="00000000-0000-0000-0000-000000000000" name="D3Data" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="1b6da8f1-76f3-41cd-8c74-e6d845a5d36a" parentUniqueID="00000000-0000-0000-0000-000000000000" name="D3HeroesTool" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+    <projectFolder uniqueID="fb7a253d-0054-4065-829e-c73a3d19e377" parentUniqueID="00000000-0000-0000-0000-000000000000" name="D3HeroesTool.Test" orderPosition="0">
+      <remarks>
+      </remarks>
+      <dynSettings />
+    </projectFolder>
+  </projectFolders>
+</project>

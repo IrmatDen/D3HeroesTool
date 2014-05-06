@@ -6,7 +6,7 @@
              StartupUri="MainWindow.xaml" Startup="Application_Startup">
     <Application.Resources>
         <d3htu:ValidationErrorConverter x:Key="ValidationErrorConverter" />
-        <d3htu:EnumDisplayer Type="{x:Type d3d:Server}" ResourcesPath="D3Data.resources" x:Key="ServersED" />
-        <d3htu:EnumDisplayer Type="{x:Type d3d:Locale}" ResourcesPath="D3Data.resources" x:Key="LocalesED" />
+        <d3htu:EnumDisplayer Type="{x:Type d3d:Server}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="ServersED" />
+        <d3htu:EnumDisplayer Type="{x:Type d3d:Locale}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="LocalesED" />
     </Application.Resources>
 </Application>

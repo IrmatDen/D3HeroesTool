@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using System.Windows.Data;
+using WPFLocalizeExtension.Engine;
 
 namespace D3HeroesTool.Utils
 {
@@ -18,9 +19,9 @@ namespace D3HeroesTool.Utils
     {
         private Type type;
         private IBiMap enumMappings; // Will store <string, enum_values>
-        private ResourceManager rm;
 
-        public string ResourcesPath { get; set; }
+        public string ResourcesAssembly { get; set; }
+        public string ResourcesRootName { get; set; }
         public Type Type
         {
             get { return type; }
@@ -65,9 +66,8 @@ namespace D3HeroesTool.Utils
             DisplayStringAttribute dsa = a[0];
             if (!string.IsNullOrEmpty(dsa.ResourceKey))
             {
-                if (rm == null)
-                    rm = new ResourceManager(ResourcesPath, type.Assembly);
-                return rm.GetString(dsa.ResourceKey);
+                return (string)LocalizeDictionary.Instance.GetLocalizedObject(ResourcesAssembly, ResourcesRootName,
+                                                                              dsa.ResourceKey, LocalizeDictionary.Instance.Culture);
             }
 
             return dsa.Value;
@@ -110,6 +110,9 @@ namespace D3HeroesTool.Utils
         /// <returns>enum value, or throws</returns>
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+                return null;
+
             object enumValue;
             if (!enumMappings.TryGetByLeft(value, out enumValue))
                 throw new Exception(String.Format("Unknown string {0} in enum {1}", value.ToString(), type.ToString()));

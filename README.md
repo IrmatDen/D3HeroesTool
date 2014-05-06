@@ -9,6 +9,8 @@ If you came here in the hope of having a useful, sorry, you can go away until a 
 Dependencies
 ------------
 
-NUnit
-JSon.net
-Moq (currently installed with nuget, could be useless though)
+* NUnit
+* JSon.net
+* WPFLocalizeExtension + XAMLMarkupExtensions
+
+Includes a Zeta Resource Editor (http://www.zeta-resource-editor.com/index.html) project to ease localization
