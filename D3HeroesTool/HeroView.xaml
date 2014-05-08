@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:c="clr-namespace:D3HeroesTool"
              mc:Ignorable="d" 
-             d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645">
+             d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645"
+             d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}">
     <UserControl.Background>
         <ImageBrush ImageSource="{Binding Background}" />
     </UserControl.Background>

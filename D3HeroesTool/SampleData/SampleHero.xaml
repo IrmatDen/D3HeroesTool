@@ -1,0 +1,5 @@
+﻿<m:HeroViewModel 
+    xmlns:m="clr-namespace:D3HeroesTool"
+    m:HeroViewModel.Name="Hero name"
+    Background="file://F:\src\D3HeroesTool\cache\static/barbarian-male.jpg">
+</m:HeroViewModel>
