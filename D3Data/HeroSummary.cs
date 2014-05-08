@@ -24,6 +24,9 @@ namespace D3Data
         [JsonProperty(PropertyName = "class")]
         public D3Class d3class { get; set; }
 
+        [JsonIgnore]
+        public string NameLevel { get { return String.Format("{0} ({1})", name, level.ToString());  } }
+
         public HeroSummary() { }
 
         public int CompareTo(Object other)

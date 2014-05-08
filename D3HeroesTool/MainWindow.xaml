@@ -88,7 +88,7 @@
                     SelectedItem="{Binding Career.lastHeroPlayed}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding name}" Style="{StaticResource HeroTabItem}" />
+                    <TextBlock Text="{Binding NameLevel}" Style="{StaticResource HeroTabItem}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
