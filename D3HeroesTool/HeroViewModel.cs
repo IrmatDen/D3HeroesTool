@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -51,8 +52,16 @@ namespace D3HeroesTool
                 if (_bgSource != null || _bgSourceRequested)
                     return _bgSource;
 
-                // Builds local path to image
-                string bgName = String.Format("{0}-{1}.jpg", CurrentHero.d3class.ToString(), CurrentHero.gender.ToString()).ToLower();
+                // Builds local path to image (requires getting the hero's class in a "bnet-io-friendly" format for WD/DH)
+                // thus exploiting reflection to get the serialization string defined in the enum
+                var classType = typeof(D3Class);
+                var memberInfo = classType.GetMember(CurrentHero.d3class.ToString());
+                var attribs = memberInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
+                string d3className = attribs.Length > 0 ?
+                      ((EnumMemberAttribute)attribs[0]).Value
+                    : CurrentHero.d3class.ToString();
+
+                string bgName = String.Format("{0}-{1}.jpg", d3className, CurrentHero.gender.ToString()).ToLower();
                 string bgPath = "cache/static/" + bgName;
                 Directory.CreateDirectory("cache/static/");
 
