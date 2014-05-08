@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace D3Data
 {
@@ -14,7 +9,11 @@ namespace D3Data
     {
         public static Career AsCareer(string json)
         {
-            return JsonConvert.DeserializeObject<Career>(json);
+            Career career = new Career();
+            Converters.HeroRefConverter.careerRef = career;
+            JsonConvert.PopulateObject(json, career);
+
+            return career;
         }
     }
 }

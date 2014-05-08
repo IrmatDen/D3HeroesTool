@@ -1,9 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace D3HeroesTool.Test
 {
@@ -34,8 +31,10 @@ namespace D3HeroesTool.Test
         [Test]
         public void lastHeroPlayed()
         {
-            D3Data.Career c = D3Data.Deserializer.AsCareer("{ 'lastHeroPlayed': 17313570 }");
-            Assert.AreEqual(17313570, c.lastHeroPlayed);
+            D3Data.Career c = D3Data.Deserializer.AsCareer(@"{ 'heroes': [ { 'id':0, 'name':'Krash', 'class':'barbarian' },
+                                                                           { 'id':1, 'name':'DeMolay', 'class':'crusader' } ],
+                                                               'lastHeroPlayed': 0 }");
+            Assert.AreEqual("Krash", c.lastHeroPlayed.name);
         }
 
         [Test]
