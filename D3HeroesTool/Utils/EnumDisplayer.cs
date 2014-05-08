@@ -14,6 +14,8 @@ namespace D3HeroesTool.Utils
     /// Allows automatic conversion from an enum to it's corresponding DisplayStringAttributes
     /// Based on http://www.ageektrapped.com/blog/the-missing-net-7-displaying-enums-in-wpf/
     /// (using bimap instead of 2 IDictionaries, mainly as an exercise, and a bit for brevity)
+    /// Localization isn't handled by a ResourceKey+ResourceManager combo. It now works alongside
+    /// WpfLocalizeExtension (requires both ResourcesAssembly and ResourcesRootName)
     /// </summary>
     public class EnumDisplayer : IValueConverter
     {

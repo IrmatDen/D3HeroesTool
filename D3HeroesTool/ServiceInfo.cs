@@ -58,6 +58,9 @@ namespace D3HeroesTool
             }
         }
 
+        /// <summary>
+        /// Current hero selected (defaults to the last hero played after career is retrieved)
+        /// </summary>
         public HeroSummary Hero
         {
             get{

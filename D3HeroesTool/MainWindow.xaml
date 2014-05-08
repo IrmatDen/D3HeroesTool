@@ -73,7 +73,7 @@
                      Validation.ErrorTemplate="{StaticResource validationTemplate}" Grid.IsSharedSizeScope="True"
                      MaxWidth="Infinity" MinWidth="125" VerticalContentAlignment="Center">
                 <TextBox.Text>
-                    <Binding x:Uid="Binding_1" Path="BattleTag" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="BattleTag" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <d3htu:BattleTagValidator />
                         </Binding.ValidationRules>

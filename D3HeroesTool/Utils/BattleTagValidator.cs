@@ -7,6 +7,10 @@ using System.Windows.Controls;
 
 namespace D3HeroesTool.Utils
 {
+    /// <summary>
+    /// Validates a battle tag according to following syntax:
+    /// NickName#1234
+    /// </summary>
     public class BattleTagValidator : ValidationRule
     {
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)

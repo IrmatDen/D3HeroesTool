@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace D3HeroesTool.Utils
 {
+    /// <summary>
+    /// Forwards a ValidationError's message as a string value
+    /// </summary>
     public class ValidationErrorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

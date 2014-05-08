@@ -9,6 +9,11 @@ using System.Windows.Threading;
 
 namespace D3HeroesTool.Utils
 {
+    /// <summary>
+    /// Allows to autosize (and eventually restrict minimum width of a) combobox from XAML
+    /// Example:
+    /// <![CDATA[<Setter Property="d3htu:ComboBoxWidthFromItemBehavior.ComboBoxWidthFromItems" Value="True" />]]>
+    /// </summary>
     public static class ComboBoxWidthFromItemBehavior
     {
         public static readonly DependencyProperty ComboBoxWidthFromItemProperty =

@@ -9,6 +9,9 @@ using System.Windows.Data;
 
 namespace D3HeroesTool.Utils
 {
+    /// <summary>
+    /// Allows to display an HeroSummary instance as "HeroName (HeroLevel)"
+    /// </summary>
     public class HeroNameLevelConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
