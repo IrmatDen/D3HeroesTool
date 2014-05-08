@@ -34,6 +34,13 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="HeroTabItem" TargetType="TextBlock">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding hardcore}" Value="true">
+                    <Setter Property="Foreground" Value="Red" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="AutoSizedComboBox" TargetType="ComboBox">
             <Setter Property="d3htu:ComboBoxWidthFromItemBehavior.ComboBoxWidthFromItems" Value="True" />
             <Setter Property="d3htu:ComboBoxWidthFromItemBehavior.ComboBoxRestrictMinWidthFromItems" Value="True" />
@@ -80,7 +87,7 @@
                     ItemsSource="{Binding Career.heroes}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding name}" />
+                    <TextBlock Text="{Binding name}" Style="{StaticResource HeroTabItem}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
