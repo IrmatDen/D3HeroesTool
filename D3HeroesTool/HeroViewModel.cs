@@ -16,7 +16,6 @@ namespace D3HeroesTool
 
         private HeroSummary _currentHero;
         ImageSource _bgSource;
-        bool _bgSourceRequested = false;
 
         public HeroSummary CurrentHero
         {
@@ -49,7 +48,7 @@ namespace D3HeroesTool
             get
             {
                 // Handle fast cases (we already have our image, or it is currently being downloaded)
-                if (_bgSource != null || _bgSourceRequested)
+                if (_bgSource != null || wc.IsBusy)
                     return _bgSource;
 
                 // Builds local path to image (requires getting the hero's class in a "bnet-io-friendly" format for WD/DH)
@@ -66,7 +65,6 @@ namespace D3HeroesTool
                 Directory.CreateDirectory("cache/static/");
 
                 // Tag our image as currently being requested, and starts downloading it
-                _bgSourceRequested = true;
                 FileInfo fi = new FileInfo(bgPath);
                 if (!File.Exists(bgPath) || fi.Length == 0)
                 {
@@ -83,12 +81,10 @@ namespace D3HeroesTool
                                         OnPropertyChanged("Background");
                                     }
                                 }
-                                _bgSourceRequested = false;
                             }, TaskScheduler.FromCurrentSynchronizationContext());
                     return null;
                 }
 
-                _bgSourceRequested = false;
                 _bgSource = new BitmapImage(new Uri(bgPath, UriKind.Relative));
                 return _bgSource;
             }
@@ -109,7 +105,6 @@ namespace D3HeroesTool
         private void Reset()
         {
             _bgSource = null;
-            _bgSourceRequested = false;
         }
     }
 }
