@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645">
     <UserControl.Background>
-        <ImageBrush ImageSource="F:\src\D3HeroesTool\cache\static\barbarian-male.jpg" />
+        <ImageBrush ImageSource="{Binding Background}" />
     </UserControl.Background>
     <Canvas>
         <TextBlock Text="{Binding Name}" Width="700" Height="auto" TextAlignment="Center" FontSize="48" VerticalAlignment="Center"

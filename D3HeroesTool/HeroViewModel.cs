@@ -1,17 +1,29 @@
 ﻿using D3Data;
+using System;
 using System.ComponentModel;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace D3HeroesTool
 {
     public class HeroViewModel : INotifyPropertyChanged
-    {    
+    {
+        private WebClient wc = new WebClient();
+
         private HeroSummary _currentHero;
+        ImageSource _bgSource;
+        bool _bgSourceRequested = false;
+
         public HeroSummary CurrentHero
         {
             get { return _currentHero; }
             set
             {
                 _currentHero = value;
+                Reset();
                 OnPropertyChanged(null);
             }
         }
@@ -20,14 +32,61 @@ namespace D3HeroesTool
         {
             get
             {
-                if (_currentHero == null)
+                if (CurrentHero == null)
                     return null;
-                return _currentHero.name;
+                return CurrentHero.name;
             }
             set
             {
-                _currentHero.name = value;
+                CurrentHero.name = value;
                 OnPropertyChanged("Name");
+            }
+        }
+
+        public ImageSource Background
+        {
+            get
+            {
+                // Handle fast cases (we already have our image, or it is currently being downloaded)
+                if (_bgSource != null || _bgSourceRequested)
+                    return _bgSource;
+
+                // Builds local path to image
+                string bgName = String.Format("{0}-{1}.jpg", CurrentHero.d3class.ToString(), CurrentHero.gender.ToString()).ToLower();
+                string bgPath = "cache/static/" + bgName;
+                Directory.CreateDirectory("cache/static/");
+
+                // Tag our image as currently being requested, and starts downloading it
+                _bgSourceRequested = true;
+                FileInfo fi = new FileInfo(bgPath);
+                if (!File.Exists(bgPath) || fi.Length == 0)
+                {
+                    string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + bgName;
+                    wc.DownloadFileTaskAsync(url, bgPath)
+                        .ContinueWith(task =>
+                            {
+                                if (task.IsCompleted)
+                                {
+                                    // If download is really successful, tell WPF our property has changed to display it
+                                    if (File.Exists(bgPath) && fi.Length > 0)
+                                    {
+                                        _bgSource = new BitmapImage(new Uri(bgPath, UriKind.Relative));
+                                        OnPropertyChanged("Background");
+                                    }
+                                }
+                                _bgSourceRequested = false;
+                            }, TaskScheduler.FromCurrentSynchronizationContext());
+                    return null;
+                }
+
+                _bgSourceRequested = false;
+                _bgSource = new BitmapImage(new Uri(bgPath, UriKind.Relative));
+                return _bgSource;
+            }
+            set
+            {
+                _bgSource = value;
+                OnPropertyChanged("Background");
             }
         }
 
@@ -36,6 +95,12 @@ namespace D3HeroesTool
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(p));
+        }
+
+        private void Reset()
+        {
+            _bgSource = null;
+            _bgSourceRequested = false;
         }
     }
 }
