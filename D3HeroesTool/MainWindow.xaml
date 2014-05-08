@@ -4,6 +4,7 @@
         xmlns:local="clr-namespace:D3HeroesTool" x:Class="D3HeroesTool.MainWindow"
         xmlns:c="clr-namespace:D3HeroesTool"
         xmlns:d3htu="clr-namespace:D3HeroesTool.Utils"
+        xmlns:d3d="clr-namespace:D3Data;assembly=D3Data"
         xmlns:p="clr-namespace:D3HeroesTool.Properties"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:LocalizeDictionary.DesignCulture="en"
@@ -11,6 +12,10 @@
         lex:ResxLocalizationProvider.DefaultDictionary="ResourceStrings"
         Title="D3Heroes" Height="265.455" Width="709.739" SizeToContent="WidthAndHeight">
     <Window.Resources>
+        <d3htu:ValidationErrorConverter x:Key="ValidationErrorConverter" />
+        <d3htu:HeroNameLevelConverter x:Key="HeroNameLevelConverter" />
+        <d3htu:EnumDisplayer Type="{x:Type d3d:Server}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="ServersED" />
+        <d3htu:EnumDisplayer Type="{x:Type d3d:Locale}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="LocalesED" />
         <ControlTemplate x:Key="validationTemplate">
             <DockPanel>
                 <TextBlock Foreground="Red" FontSize="25" VerticalAlignment="Top" Margin="0,-5,0,0" >!</TextBlock>
@@ -70,7 +75,7 @@
                 <TextBox.Text>
                     <Binding x:Uid="Binding_1" Path="BattleTag" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <d3htu:BattleTagValidator x:Uid="d3htu:BattleTagValidator_1"/>
+                            <d3htu:BattleTagValidator />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -88,7 +93,7 @@
                     SelectedItem="{Binding Hero, Mode=TwoWay}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding NameLevel}" Style="{StaticResource HeroTabItem}" />
+                    <TextBlock Text="{Binding Converter={StaticResource HeroNameLevelConverter}}" Style="{StaticResource HeroTabItem}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
