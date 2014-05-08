@@ -7,12 +7,13 @@ namespace D3HeroesTool
     [DataContract]
     public class ServiceInfo : INotifyPropertyChanged
     {
-        private D3Data.Server _server;
-        private D3Data.Locale _locale;
+        private Server _server;
+        private Locale _locale;
         private string _battletag;
+        private Career _career;
 
         [DataMember(Name = "Server")]
-        public D3Data.Server Server
+        public Server Server
         {
             get { return _server; }
             set
@@ -23,7 +24,7 @@ namespace D3HeroesTool
         }
 
         [DataMember(Name = "Locale")]
-        public D3Data.Locale Locale
+        public Locale Locale
         {
             get { return _locale; }
             set
@@ -41,6 +42,16 @@ namespace D3HeroesTool
             {
                 _battletag = value;
                 OnPropertyChanged("BattleTag");
+            }
+        }
+
+        public Career Career
+        {
+            get { return _career; }
+            set
+            {
+                _career = value;
+                OnPropertyChanged("Career");
             }
         }
         

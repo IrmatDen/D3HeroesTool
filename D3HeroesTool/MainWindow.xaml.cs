@@ -29,8 +29,7 @@ namespace D3HeroesTool
 
             InitializeComponent();
 
-            pnlServiceInfo.DataContext = si;
-            tbDebug.DataContext = si;
+            DataContext = si;
         }
 
         private void updateCulture()
@@ -52,7 +51,7 @@ namespace D3HeroesTool
             string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
                                                                                    LocalizeDictionary.Instance.Culture);
             App.ActiveBNet.Setup(si.Server, si.BattleTag, si.Locale);
-            App.ActiveBNet.GetCareer((string json) => { tbDebug.Text = json; },
+            App.ActiveBNet.GetCareer((string json) => { si.Career = D3Data.Deserializer.AsCareer(json); },
                                      () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); });
         }
 
