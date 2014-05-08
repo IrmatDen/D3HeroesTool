@@ -43,6 +43,21 @@ namespace D3HeroesTool
             }
         }
 
+        public string LvlAndClassHeader
+        {
+            get
+            {
+                if (CurrentHero == null)
+                    return null;
+                return String.Format("{0} ({1}) {2}", CurrentHero.level, "##", CurrentHero.d3class.ToString());
+            }
+            set
+            {
+                CurrentHero.name = value;
+                OnPropertyChanged("LvlAndClassHeader");
+            }
+        }
+
         public ImageSource Background
         {
             get

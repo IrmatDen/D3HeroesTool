@@ -12,6 +12,7 @@
     </UserControl.Background>
     <Canvas>
         <TextBlock Text="{Binding Name}" Width="700" Height="auto" TextAlignment="Center" FontSize="48" VerticalAlignment="Center"
-                   FontFamily="./resources/#Exocet Light" Canvas.Right="15" Canvas.Top="68" HorizontalAlignment="Center"/>
+                   FontFamily="./resources/#Exocet Light" Canvas.Right="15" Canvas.Top="68" HorizontalAlignment="Center" Foreground="#FFFFEAD4"/>
+        <TextBlock Text="{Binding LvlAndClassHeader}" Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15" TextAlignment="Center" Foreground="#FFD4B473"/>
     </Canvas>
 </UserControl>

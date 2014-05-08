@@ -1,5 +1,6 @@
 ﻿<m:HeroViewModel 
     xmlns:m="clr-namespace:D3HeroesTool"
-    m:HeroViewModel.Name="Hero name"
+    m:HeroViewModel.Name="#HERO_NAME#"
+    LvlAndClassHeader="70 (246) Barbarian"
     Background="file://F:\src\D3HeroesTool\cache\static/barbarian-male.jpg">
 </m:HeroViewModel>
