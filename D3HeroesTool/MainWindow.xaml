@@ -91,6 +91,11 @@
                     <TextBlock Text="{Binding NameLevel}" Style="{StaticResource HeroTabItem}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <c:HeroView DataContext="{Binding}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
         </TabControl>
     </DockPanel>
 </Window>
