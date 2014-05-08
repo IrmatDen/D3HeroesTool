@@ -84,7 +84,8 @@
                     Margin="5" Grid.IsSharedSizeScope="True" Click="btnInvoke_Click"/>
         </Grid>
         <TabControl Name="tcHeroes" Margin="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" MaxWidth="991" MaxHeight="645"
-                    ItemsSource="{Binding Career.heroes}">
+                    ItemsSource="{Binding Career.heroes}"
+                    SelectedItem="{Binding Career.lastHeroPlayed}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding name}" Style="{StaticResource HeroTabItem}" />
