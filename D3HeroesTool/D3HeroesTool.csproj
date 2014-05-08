@@ -67,6 +67,7 @@
     <Compile Include="HeroView.xaml.cs">
       <DependentUpon>HeroView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HeroViewModel.cs" />
     <Compile Include="ServiceInfo.cs" />
     <Compile Include="Strings\ResourceStrings.fr-FR.Designer.cs">
       <DependentUpon>ResourceStrings.fr-FR.resx</DependentUpon>
