@@ -91,10 +91,7 @@ namespace D3HeroesTool
                     {
                         // If download is really successful, tell WPF our property has changed to display it
                         if (File.Exists(bgPath) && fi.Length > 0)
-                        {
-                            _bgSource = new BitmapImage(new Uri(bgPath, UriKind.Relative));
-                            OnPropertyChanged("Background");
-                        }
+                            Background = new BitmapImage(new Uri(bgPath, UriKind.Relative));
                     }
                 }, TaskScheduler.FromCurrentSynchronizationContext());
         }
