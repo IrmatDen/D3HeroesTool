@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Windows;
 using WPFLocalizeExtension.Engine;
 
 namespace D3HeroesTool
@@ -20,6 +21,7 @@ namespace D3HeroesTool
         private HeroSummary _heroSummary;
         private HeroViewModel _heroVM;
 
+        #region Properties
         [DataMember(Name = "Server")]
         public Server Server
         {
@@ -104,7 +106,34 @@ namespace D3HeroesTool
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(p));
         }
+        #endregion
 
+        #region Interactions
+        public bool CanLoadCareer()
+        {
+            return true;
+        }
+
+        public void LoadCareer()
+        {
+            saveSettings();
+
+            string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
+                                                                                   LocalizeDictionary.Instance.Culture);
+            App.FSProvider.Setup(Server, BattleTag, Locale);
+            App.FSProvider.GetCareer(
+                (string json) =>
+                {
+                    Career = D3Data.Deserializer.AsCareer(json);
+                },
+                () =>
+                {
+                    MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error);
+                });
+        }
+        #endregion
+
+        #region Save/restore
         /// <summary>
         /// Initialize a new ServiceInfo instance based on saved settings (if any).
         /// </summary>
@@ -143,5 +172,6 @@ namespace D3HeroesTool
                 serializer.WriteObject(outStream, this);
             }
         }
+#endregion
     }
 }

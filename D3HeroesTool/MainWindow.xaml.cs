@@ -15,7 +15,6 @@ namespace D3HeroesTool
         public MainWindow()
         {
             si = ServiceInfo.tryRestoreSettings();
-
             si.PropertyChanged += (sender, args) => { if (args.PropertyName == "Locale") updateCulture(); };
 
             InitializeComponent();
@@ -33,22 +32,6 @@ namespace D3HeroesTool
             cbServer.GetBindingExpression(ComboBox.SelectedValueProperty).UpdateTarget();
 
             // NB: we don't update cbLocale since strings are already localized (+ it would trigger infinite recursion)
-        }
-
-        private void btnInvoke_Click(object sender, RoutedEventArgs e)
-        {
-            si.saveSettings();
-
-            string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
-                                                                                   LocalizeDictionary.Instance.Culture);
-            App.FSProvider.Setup(si.Server, si.BattleTag, si.Locale);
-            App.FSProvider.GetCareer(
-                (string json) => {
-                    si.Career = D3Data.Deserializer.AsCareer(json);
-                },
-                () => {
-                    MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error);
-                });
         }
     }
 }
