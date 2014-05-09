@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Windows;
 
 namespace D3HeroesTool
@@ -10,19 +9,19 @@ namespace D3HeroesTool
     /// </summary>
     public partial class App : Application
     {
-        public static D3Data.IBNetService ActiveBNet;
+        /// <summary>
+        /// Used to access battle.net data. If data isn't available or is outdated,
+        /// it'll be requested to a specified internet provider
+        /// </summary>
+        public static FSBNetService FSProvider;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            if (e.Args.Any(arg => arg == "--filesystem"))
-            {
-                FSBNetService serv = new FSBNetService();
-                serv.RootFolder = Path.Combine(Directory.GetCurrentDirectory(), "cache");
-                if (!Directory.Exists(serv.RootFolder))
-                    throw new Exception("--filesystem can only be used from a folder containing the cache subfolder");
-
-                ActiveBNet = serv;
-            }
+            FSProvider = new FSBNetService(new WebBNetService());
+            FSProvider.RootFolder = Path.Combine(Directory.GetCurrentDirectory(), "cache");
+            Directory.CreateDirectory(FSProvider.RootFolder);
+            if (!Directory.Exists(FSProvider.RootFolder))
+                throw new Exception("Application cannot be used in a folder with readonly access.");
         }
     }
 }

@@ -50,9 +50,14 @@ namespace D3HeroesTool
 
             string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
                                                                                    LocalizeDictionary.Instance.Culture);
-            App.ActiveBNet.Setup(si.Server, si.BattleTag, si.Locale);
-            App.ActiveBNet.GetCareer((string json) => { si.Career = D3Data.Deserializer.AsCareer(json); },
-                                     () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); });
+            App.FSProvider.Setup(si.Server, si.BattleTag, si.Locale);
+            App.FSProvider.GetCareer(
+                (string json) => {
+                    si.Career = D3Data.Deserializer.AsCareer(json);
+                },
+                () => {
+                    MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error);
+                });
         }
 
         private void tryLoadServiceInfoSettings()

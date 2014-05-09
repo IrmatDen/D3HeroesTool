@@ -86,6 +86,7 @@
     <Compile Include="Utils\HeroNameLevelConverter.cs" />
     <Compile Include="Utils\SimpleBiMap.cs" />
     <Compile Include="Utils\ValidationErrorConverter.cs" />
+    <Compile Include="WebBNetService.cs" />
     <Page Include="HeroView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
