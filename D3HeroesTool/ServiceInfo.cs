@@ -1,12 +1,18 @@
 ﻿using D3Data;
+using System;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
 using System.Runtime.Serialization;
+using WPFLocalizeExtension.Engine;
 
 namespace D3HeroesTool
 {
     [DataContract]
     public class ServiceInfo : INotifyPropertyChanged
     {
+        private static readonly string SettingsFileName = "./settings.d3ht";
+
         private Server _server;
         private Locale _locale;
         private string _battletag;
@@ -97,6 +103,45 @@ namespace D3HeroesTool
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(p));
+        }
+
+        /// <summary>
+        /// Initialize a new ServiceInfo instance based on saved settings (if any).
+        /// </summary>
+        static public ServiceInfo tryRestoreSettings()
+        {
+            if (!File.Exists(SettingsFileName))
+                return new ServiceInfo();
+
+            ServiceInfo instance;
+            try
+            {
+                DataContractSerializer deserializer = new DataContractSerializer(typeof(ServiceInfo));
+                using (Stream inStream = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    instance = (ServiceInfo)deserializer.ReadObject(inStream);
+                    string bnetLocale = instance.Locale.ToString().Replace("_", "-");
+                    LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo(bnetLocale);
+                }
+            }
+            catch (Exception)
+            {
+                instance = new ServiceInfo();
+            }
+
+            return instance;
+        }
+
+        /// <summary>
+        /// Dump current settings
+        /// </summary>
+        public void saveSettings()
+        {
+            DataContractSerializer serializer = new DataContractSerializer(typeof(ServiceInfo));
+            using (Stream outStream = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                serializer.WriteObject(outStream, this);
+            }
         }
     }
 }

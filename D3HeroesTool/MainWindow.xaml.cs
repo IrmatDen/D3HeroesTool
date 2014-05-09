@@ -1,13 +1,6 @@
-﻿using D3HeroesTool.Utils;
-using System;
-using System.ComponentModel;
-using System.Globalization;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using WPFLocalizeExtension.Engine;
 
 namespace D3HeroesTool
@@ -17,13 +10,11 @@ namespace D3HeroesTool
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static readonly string SettingsFileName = "./settings.d3ht";
-
-        ServiceInfo si = new ServiceInfo();
+        ServiceInfo si;
 
         public MainWindow()
         {
-            tryLoadServiceInfoSettings();
+            si = ServiceInfo.tryRestoreSettings();
 
             si.PropertyChanged += (sender, args) => { if (args.PropertyName == "Locale") updateCulture(); };
 
@@ -46,7 +37,7 @@ namespace D3HeroesTool
 
         private void btnInvoke_Click(object sender, RoutedEventArgs e)
         {
-            saveServiceInfoSettings();
+            si.saveSettings();
 
             string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
                                                                                    LocalizeDictionary.Instance.Culture);
@@ -58,36 +49,6 @@ namespace D3HeroesTool
                 () => {
                     MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error);
                 });
-        }
-
-        private void tryLoadServiceInfoSettings()
-        {
-            if (!File.Exists(SettingsFileName))
-                return;
-
-            try
-            {
-                DataContractSerializer deserializer = new DataContractSerializer(typeof(ServiceInfo));
-                using (Stream inStream = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    si = (ServiceInfo)deserializer.ReadObject(inStream);
-                    string bnetLocale = si.Locale.ToString().Replace("_", "-");
-                    LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo(bnetLocale);
-                }
-            }
-            catch(Exception)
-            {
-                si = new ServiceInfo();
-            }
-        }
-
-        private void saveServiceInfoSettings()
-        {
-            DataContractSerializer serializer = new DataContractSerializer(typeof(ServiceInfo));
-            using (Stream outStream = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                serializer.WriteObject(outStream, si);
-            }
         }
     }
 }
