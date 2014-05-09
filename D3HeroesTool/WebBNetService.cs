@@ -33,7 +33,7 @@ namespace D3HeroesTool
                         onCareerJSonReceived(task.Result);
                     else
                         onError();
-                }, TaskScheduler.FromCurrentSynchronizationContext());
+                });
         }
     }
 }

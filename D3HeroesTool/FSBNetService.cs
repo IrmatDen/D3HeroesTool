@@ -53,7 +53,7 @@ namespace D3HeroesTool
             }
         }
 
-        private bool IsFileOutdated(string filepath)
+        private static bool IsFileOutdated(string filepath)
         {
             TimeSpan timespan = DateTime.UtcNow - File.GetCreationTimeUtc(filepath);
             return timespan > ObsolescenceDelay;
