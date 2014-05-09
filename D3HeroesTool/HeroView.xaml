@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fmt="clr-namespace:System.Windows.Documents;assembly=PresentationCore"
              xmlns:c="clr-namespace:D3HeroesTool"
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645"
@@ -11,8 +12,15 @@
         <ImageBrush ImageSource="{Binding Background}" />
     </UserControl.Background>
     <Canvas>
-        <TextBlock Text="{Binding Name}" Width="700" Height="auto" TextAlignment="Center" FontSize="48" VerticalAlignment="Center"
-                   FontFamily="./resources/#Exocet Light" Canvas.Right="15" Canvas.Top="68" HorizontalAlignment="Center" Foreground="#FFFFEAD4"/>
-        <TextBlock Text="{Binding LvlAndClassHeader}" Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15" TextAlignment="Center" Foreground="#FFD4B473"/>
+        <TextBlock Width="700" Height="68" TextAlignment="Center" FontSize="48" Foreground="#FFFFEAD4"
+                   FontFamily="./resources/#Exocet Light" Canvas.Right="15" Canvas.Top="56">
+            <Run FontSize="66" Text="{Binding Mode=OneWay, Path=NameFirstLetter}" BaselineAlignment="Center" /><Run Text="{Binding Mode=OneWay, Path=NameOtherLetters}" />
+        </TextBlock>
+        <TextBlock Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15"
+                   TextAlignment="Center" Foreground="#FFD4B473">
+            <Run Text="{Binding Mode=OneWay, Path=CurrentHero.level}" FontWeight="Bold" />
+            <Run Text="(" Foreground="#FFA791C2" /><Run Text="{Binding Mode=OneWay, Path=CurrentHero.paragonLevel}" Foreground="#FFA791C2" /><Run Text=")" Foreground="#FFA791C2" />
+            <Run Text="{Binding Mode=OneWay, Path=CurrentHero.d3class}" />
+        </TextBlock>
     </Canvas>
 </UserControl>
