@@ -35,14 +35,15 @@ namespace D3HeroesTool
             wc.DownloadStringTaskAsync(careerUrl)
                 .ContinueWith(task =>
                 {
-                    if (task.IsCompleted)
-                    {
-                        RaiseFinishedEvent(finishedArgs);
+                    RaiseFinishedEvent(finishedArgs);
 
-                        if (!task.IsFaulted)
-                            onCareerJSonReceived(task.Result);
-                        else
+                    if (!task.IsFaulted)
+                    {
+                        // Basic validation on what we got
+                        if (task.Result.Contains("\"reason\" : \"The account could not be found.\""))
                             onError();
+                        else
+                            onCareerJSonReceived(task.Result);
                     }
                     else
                         onError();
