@@ -13,12 +13,11 @@ namespace D3HeroesTool
         private static readonly TimeSpan ObsolescenceDelay = new TimeSpan(12, 0, 0);
 
         private IBNetService WebAccessor;
-
-        public string RootFolder { get; set; }
-
         private string battleTagAccessor;
         private Server server;
         private Locale locale;
+
+        public string RootFolder { get; set; }
 
         public FSBNetService(IBNetService webAccessor)
         {

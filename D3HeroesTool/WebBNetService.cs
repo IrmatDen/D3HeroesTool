@@ -13,6 +13,9 @@ namespace D3HeroesTool
         private Server server;
         private Locale locale;
 
+        public event DownloadStartedEventHandler OnDownloadStarted;
+        public event DownloadFinishedEventHandler OnDownloadFinished;
+
         public void Setup(Server s, string battleTag, Locale l = Locale.en_US)
         {
             battleTagAccessor = battleTag.Replace('#', '-').ToLower();
@@ -26,14 +29,36 @@ namespace D3HeroesTool
             careerUrl = String.Format(careerUrl, server.ToString(), battleTagAccessor,
                                       locale.ToString().Replace('_', '-'));
 
+            RaiseStartEvent(new BNetDownloadStartedEventArgs("Career"));
+            BNetDownloadFinishedEventArgs finishedArgs = new BNetDownloadFinishedEventArgs();
+
             wc.DownloadStringTaskAsync(careerUrl)
                 .ContinueWith(task =>
                 {
-                    if (task.IsCompleted && !task.IsFaulted)
-                        onCareerJSonReceived(task.Result);
+                    if (task.IsCompleted)
+                    {
+                        RaiseFinishedEvent(finishedArgs);
+
+                        if (!task.IsFaulted)
+                            onCareerJSonReceived(task.Result);
+                        else
+                            onError();
+                    }
                     else
                         onError();
                 });
+        }
+
+        private void RaiseFinishedEvent(BNetDownloadFinishedEventArgs args)
+        {
+            if (OnDownloadFinished != null)
+                OnDownloadFinished(this, args);
+        }
+
+        private void RaiseStartEvent(BNetDownloadStartedEventArgs args)
+        {
+            if (OnDownloadStarted != null)
+                OnDownloadStarted(this, args);
         }
     }
 }
