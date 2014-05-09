@@ -12,6 +12,7 @@ namespace D3Data
     {
         public int id { get; set; }
         public string name { get; set; }
+        public int paragonLevel { get; set; }
         public int level { get; set; }
         public bool hardcore { get; set; }
         public bool dead { get; set; }
