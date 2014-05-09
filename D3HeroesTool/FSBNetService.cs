@@ -10,6 +10,8 @@ namespace D3HeroesTool
 {
     public class FSBNetService : IBNetService
     {
+        private static readonly TimeSpan ObsolescenceDelay = new TimeSpan(12, 0, 0);
+
         private IBNetService WebAccessor;
 
         public string RootFolder { get; set; }
@@ -36,7 +38,8 @@ namespace D3HeroesTool
         {
             string careerFolder = Path.Combine(RootFolder, locale.ToString(), server.ToString());
             string careerPath = Path.ChangeExtension(Path.Combine(careerFolder, battleTagAccessor), "json");
-            if (File.Exists(careerPath))
+
+            if (File.Exists(careerPath) && !IsFileOutdated(careerPath))
                 onCareerJSonReceived(File.ReadAllText(careerPath));
             else
             {
@@ -48,6 +51,12 @@ namespace D3HeroesTool
                     },
                     onError);
             }
+        }
+
+        private bool IsFileOutdated(string filepath)
+        {
+            TimeSpan timespan = DateTime.UtcNow - File.GetCreationTimeUtc(filepath);
+            return timespan > ObsolescenceDelay;
         }
     }
 }
