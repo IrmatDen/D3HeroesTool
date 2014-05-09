@@ -28,33 +28,17 @@ namespace D3HeroesTool
             }
         }
 
-        public string Name
+        public string NameFirstLetter
         {
-            get
-            {
-                if (CurrentHero == null)
-                    return null;
-                return CurrentHero.name;
-            }
-            set
-            {
-                CurrentHero.name = value;
-                OnPropertyChanged("Name");
-            }
+            get { return CurrentHero.name.Substring(0, 1).ToUpper(); }
         }
-
-        public string LvlAndClassHeader
+        public string NameOtherLetters
         {
             get
             {
-                if (CurrentHero == null)
+                if (CurrentHero.name.Length < 2)
                     return null;
-                return String.Format("{0} ({1}) {2}", CurrentHero.level, "##", CurrentHero.d3class.ToString());
-            }
-            set
-            {
-                CurrentHero.name = value;
-                OnPropertyChanged("LvlAndClassHeader");
+                return CurrentHero.name.Substring(1).ToUpper();
             }
         }
 
