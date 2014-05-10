@@ -20,7 +20,7 @@
     </UserControl.Resources>
     
     <TabControl Name="tcHeroes" Margin="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" MaxWidth="991" MaxHeight="645"
-                    ItemsSource="{Binding Career.heroes}"
+                    ItemsSource="{Binding Heroes, Mode=OneWay}"
                     SelectedItem="{Binding Hero, Mode=TwoWay}">
         <TabControl.ItemTemplate>
             <DataTemplate>

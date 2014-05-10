@@ -1,4 +1,5 @@
 ﻿using D3Data;
+using System.Collections;
 
 namespace D3HeroesTool.ViewModels
 {
@@ -18,6 +19,14 @@ namespace D3HeroesTool.ViewModels
                 Hero = _career.lastHeroPlayed;
                 OnPropertyChanged("Career");
             }
+        }
+
+        /// <summary>
+        /// Get all heroes from career
+        /// </summary>
+        public IEnumerable Heroes
+        {
+            get { return Career.heroes; }
         }
 
         /// <summary>
