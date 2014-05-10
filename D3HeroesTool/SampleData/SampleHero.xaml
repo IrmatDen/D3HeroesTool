@@ -1,10 +1,10 @@
-﻿<m:HeroViewModel
-    xmlns:m="clr-namespace:D3HeroesTool"
+﻿<vm:HeroViewModel
+    xmlns:vm="clr-namespace:D3HeroesTool.ViewModels"
     xmlns:d="clr-namespace:D3Data;assembly=D3Data"
     Background="file://F:\src\D3HeroesTool\cache\static/barbarian-male.jpg"
     NameFirstLetter="K"
     NameOtherLetters="ALDORDRAIGO">
-    <m:HeroViewModel.CurrentHero>
+    <vm:HeroViewModel.CurrentHero>
         <d:HeroSummary name="test" level="70" paragonLevel="224" d3class="Monk" />
-    </m:HeroViewModel.CurrentHero>
-</m:HeroViewModel>
+    </vm:HeroViewModel.CurrentHero>
+</vm:HeroViewModel>

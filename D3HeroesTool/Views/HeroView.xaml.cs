@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace D3HeroesTool
+namespace D3HeroesTool.Views
 {
     /// <summary>
     /// Interaction logic for HeroView.xaml

@@ -7,10 +7,10 @@ using System.Runtime.Serialization;
 using System.Windows;
 using WPFLocalizeExtension.Engine;
 
-namespace D3HeroesTool
+namespace D3HeroesTool.ViewModels
 {
     [DataContract]
-    public class ServiceInfo : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         private static readonly string SettingsFileName = "./settings.d3ht";
 
@@ -132,25 +132,29 @@ namespace D3HeroesTool
         /// <summary>
         /// Initialize a new ServiceInfo instance based on saved settings (if any).
         /// </summary>
-        static public ServiceInfo tryRestoreSettings()
+        static public MainViewModel tryRestoreSettings()
         {
             if (!File.Exists(SettingsFileName))
-                return new ServiceInfo();
+                return new MainViewModel();
 
-            ServiceInfo instance;
+            MainViewModel instance;
             try
             {
-                DataContractSerializer deserializer = new DataContractSerializer(typeof(ServiceInfo));
+                DataContractSerializer deserializer = new DataContractSerializer(typeof(MainViewModel));
                 using (Stream inStream = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    instance = (ServiceInfo)deserializer.ReadObject(inStream);
+                    instance = (MainViewModel)deserializer.ReadObject(inStream);
                     string bnetLocale = instance.Locale.ToString().Replace("_", "-");
                     LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo(bnetLocale);
                 }
             }
+            catch (SerializationException ex)
+            {
+                instance = new MainViewModel();
+            }
             catch (Exception)
             {
-                instance = new ServiceInfo();
+                instance = new MainViewModel();
             }
 
             return instance;
@@ -161,7 +165,7 @@ namespace D3HeroesTool
         /// </summary>
         public void saveSettings()
         {
-            DataContractSerializer serializer = new DataContractSerializer(typeof(ServiceInfo));
+            DataContractSerializer serializer = new DataContractSerializer(typeof(MainViewModel));
             using (Stream outStream = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 serializer.WriteObject(outStream, this);

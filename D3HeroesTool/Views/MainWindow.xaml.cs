@@ -3,18 +3,18 @@ using System.Windows;
 using System.Windows.Controls;
 using WPFLocalizeExtension.Engine;
 
-namespace D3HeroesTool
+namespace D3HeroesTool.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        ServiceInfo si;
+        ViewModels.MainViewModel si;
 
         public MainWindow()
         {
-            si = ServiceInfo.tryRestoreSettings();
+            si = ViewModels.MainViewModel.tryRestoreSettings();
             si.PropertyChanged += (sender, args) => { if (args.PropertyName == "Locale") updateCulture(); };
 
             InitializeComponent();

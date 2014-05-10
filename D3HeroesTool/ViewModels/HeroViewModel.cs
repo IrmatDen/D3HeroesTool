@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace D3HeroesTool
+namespace D3HeroesTool.ViewModels
 {
     public class HeroViewModel : INotifyPropertyChanged
     {

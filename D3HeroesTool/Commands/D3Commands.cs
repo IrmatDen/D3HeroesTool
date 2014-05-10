@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace D3HeroesTool
+namespace D3HeroesTool.Commands
 {
     /// <summary>
     /// Repository for usable commands in views
