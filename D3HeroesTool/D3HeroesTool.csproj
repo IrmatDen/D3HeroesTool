@@ -74,6 +74,7 @@
     <Compile Include="Commands\D3Commands.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CareerViewModel.cs" />
+    <Compile Include="ViewModels\SingleDownloadViewModel.cs" />
     <Compile Include="Views\CareerView.xaml.cs">
       <DependentUpon>CareerView.xaml</DependentUpon>
     </Compile>
@@ -101,6 +102,9 @@
     <Compile Include="Utils\HeroNameLevelConverter.cs" />
     <Compile Include="Utils\SimpleBiMap.cs" />
     <Compile Include="Utils\ValidationErrorConverter.cs" />
+    <Compile Include="Views\SingleDownloadView.xaml.cs">
+      <DependentUpon>SingleDownloadView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WebBNetService.cs" />
     <Page Include="Views\CareerView.xaml">
       <SubType>Designer</SubType>
@@ -126,6 +130,10 @@
     <DesignData Include="SampleData\SampleHero.xaml">
       <SubType>Designer</SubType>
     </DesignData>
+    <Page Include="Views\SingleDownloadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

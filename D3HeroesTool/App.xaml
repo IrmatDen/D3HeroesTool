@@ -8,5 +8,8 @@
         <DataTemplate DataType="{x:Type ViewModels:CareerViewModel}">
             <Views:CareerView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:SingleDownloadViewModel}">
+            <Views:SingleDownloadView />
+        </DataTemplate>
     </Application.Resources>
 </Application>

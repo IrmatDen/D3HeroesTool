@@ -17,7 +17,7 @@ namespace D3HeroesTool
             _downloadType = downloadType;
         }
     }
-    public delegate void DownloadStartedEventHandler(object sender, BNetDownloadStartedEventArgs e);
+    public delegate void DownloadCareerStartedEventHandler(object sender, BNetDownloadStartedEventArgs e);
 
     public class BNetDownloadFinishedEventArgs : EventArgs
     {
@@ -25,5 +25,5 @@ namespace D3HeroesTool
         {
         }
     }
-    public delegate void DownloadFinishedEventHandler(object sender, BNetDownloadFinishedEventArgs e);
+    public delegate void DownloadCareerFinishedEventHandler(object sender, BNetDownloadFinishedEventArgs e);
 }

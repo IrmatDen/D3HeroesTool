@@ -15,11 +15,17 @@ namespace D3HeroesTool
         /// </summary>
         public static FSBNetService FSProvider;
 
+        /// <summary>
+        /// Accessible to handle download events. Shouldn't be used for anything else, use FSProvider instead.
+        /// </summary>
+        public static WebBNetService WebProvider;
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             QuickConverter.EquationTokenizer.AddNamespace(typeof(object));
 
-            FSProvider = new FSBNetService(new WebBNetService());
+            WebProvider = new WebBNetService();
+            FSProvider = new FSBNetService(WebProvider);
             FSProvider.RootFolder = Path.Combine(Directory.GetCurrentDirectory(), "cache");
             Directory.CreateDirectory(FSProvider.RootFolder);
             if (!Directory.Exists(FSProvider.RootFolder))

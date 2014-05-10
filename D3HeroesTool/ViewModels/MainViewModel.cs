@@ -25,6 +25,9 @@ namespace D3HeroesTool.ViewModels
         void Init()
         {
             _careerVM = new CareerViewModel();
+
+            App.WebProvider.OnDownloadCareerStarted += OnCareerDownloadStarted;
+            App.WebProvider.OnDownloadCareerFinished += OnCareerDownloadFinished;
         }
 
         #region Properties
@@ -87,13 +90,25 @@ namespace D3HeroesTool.ViewModels
 
             string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
                                                                                    LocalizeDictionary.Instance.Culture);
-            ViewModel = _careerVM;
-
+            
             App.FSProvider.Setup(Server, BattleTag, Locale);
             App.FSProvider.GetCareer(
-                (string json) => { _careerVM.Career = D3Data.Deserializer.AsCareer(json); },
+                (string json) => { _careerVM.Career = D3Data.Deserializer.AsCareer(json); ViewModel = _careerVM; },
                 () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); }
                 );
+        }
+        #endregion
+
+        #region Event handling
+        private void OnCareerDownloadStarted(object sender, BNetDownloadStartedEventArgs args)
+        {
+            SingleDownloadViewModel downloadVM = new SingleDownloadViewModel();
+            ViewModel = downloadVM;
+            downloadVM.DownloadCaption = args.DownloadType;
+        }
+
+        private void OnCareerDownloadFinished(object sender, BNetDownloadFinishedEventArgs args)
+        { 
         }
         #endregion
 

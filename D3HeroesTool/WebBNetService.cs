@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace D3HeroesTool
 {
-    class WebBNetService : IBNetService
+    public class WebBNetService : IBNetService
     {
         private WebClient wc = new WebClient();
 
@@ -13,8 +13,8 @@ namespace D3HeroesTool
         private Server server;
         private Locale locale;
 
-        public event DownloadStartedEventHandler OnDownloadStarted;
-        public event DownloadFinishedEventHandler OnDownloadFinished;
+        public event DownloadCareerStartedEventHandler OnDownloadCareerStarted;
+        public event DownloadCareerFinishedEventHandler OnDownloadCareerFinished;
 
         public void Setup(Server s, string battleTag, Locale l = Locale.en_US)
         {
@@ -29,7 +29,7 @@ namespace D3HeroesTool
             careerUrl = String.Format(careerUrl, server.ToString(), battleTagAccessor,
                                       locale.ToString().Replace('_', '-'));
 
-            RaiseStartEvent(new BNetDownloadStartedEventArgs("Career"));
+            RaiseStartEvent(new BNetDownloadStartedEventArgs(String.Format("Downloading {0}", battleTagAccessor)));
             BNetDownloadFinishedEventArgs finishedArgs = new BNetDownloadFinishedEventArgs();
 
             wc.DownloadStringTaskAsync(careerUrl)
@@ -52,14 +52,14 @@ namespace D3HeroesTool
 
         private void RaiseFinishedEvent(BNetDownloadFinishedEventArgs args)
         {
-            if (OnDownloadFinished != null)
-                OnDownloadFinished(this, args);
+            if (OnDownloadCareerFinished != null)
+                OnDownloadCareerFinished(this, args);
         }
 
         private void RaiseStartEvent(BNetDownloadStartedEventArgs args)
         {
-            if (OnDownloadStarted != null)
-                OnDownloadStarted(this, args);
+            if (OnDownloadCareerStarted != null)
+                OnDownloadCareerStarted(this, args);
         }
     }
 }
