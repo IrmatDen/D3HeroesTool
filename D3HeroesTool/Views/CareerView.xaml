@@ -29,7 +29,7 @@
         </TabControl.ItemTemplate>
         <TabControl.ContentTemplate>
             <DataTemplate>
-                <Views:HeroView DataContext="{Binding DataContext.HeroVM, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                <Views:HeroView DataContext="{Binding DataContext.HeroVM, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" />
             </DataTemplate>
         </TabControl.ContentTemplate>
     </TabControl>
