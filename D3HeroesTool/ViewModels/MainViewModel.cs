@@ -16,6 +16,7 @@ namespace D3HeroesTool.ViewModels
         private Server _server;
         private Locale _locale;
         private string _battletag;
+        private bool _downloading;
         private CareerViewModel _careerVM;
         private BaseViewModel _currentVM;
 
@@ -76,6 +77,19 @@ namespace D3HeroesTool.ViewModels
                 OnPropertyChanged("ViewModel");
             }
         }
+
+        public bool DownloadInProgress
+        {
+            get
+            {
+                return _downloading;
+            }
+            set
+            {
+                _downloading = value;
+                OnPropertyChanged("DownloadInProgress");
+            }
+        }
         #endregion
 
         #region Interactions
@@ -104,11 +118,14 @@ namespace D3HeroesTool.ViewModels
         {
             SingleDownloadViewModel downloadVM = new SingleDownloadViewModel();
             ViewModel = downloadVM;
+
+            DownloadInProgress = true;
             downloadVM.DownloadCaption = args.DownloadType;
         }
 
         private void OnCareerDownloadFinished(object sender, BNetDownloadFinishedEventArgs args)
-        { 
+        {
+            DownloadInProgress = false;
         }
         #endregion
 
