@@ -72,6 +72,9 @@
     <Compile Include="Commands\DataContextCommandAdapter.cs" />
     <Compile Include="Commands\DataContextCommandBinding.cs" />
     <Compile Include="Commands\D3Commands.cs" />
+    <Compile Include="Views\CareerView.xaml.cs">
+      <DependentUpon>CareerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HeroView.xaml.cs">
       <DependentUpon>HeroView.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,10 @@
     <Compile Include="Utils\SimpleBiMap.cs" />
     <Compile Include="Utils\ValidationErrorConverter.cs" />
     <Compile Include="WebBNetService.cs" />
+    <Page Include="Views\CareerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HeroView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
