@@ -1,6 +1,5 @@
 ﻿using D3Data;
 using System;
-using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
@@ -10,16 +9,23 @@ using WPFLocalizeExtension.Engine;
 namespace D3HeroesTool.ViewModels
 {
     [DataContract]
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
         private static readonly string SettingsFileName = "./settings.d3ht";
 
         private Server _server;
         private Locale _locale;
         private string _battletag;
-        private Career _career;
-        private HeroSummary _heroSummary;
-        private HeroViewModel _heroVM;
+        private CareerViewModel _careerVM;
+        private BaseViewModel _currentVM;
+
+        /// <summary>
+        /// DataContractSerializer won't construct the object, so a bit of manual handling is required
+        /// </summary>
+        void Init()
+        {
+            _careerVM = new CareerViewModel();
+        }
 
         #region Properties
         [DataMember(Name = "Server")]
@@ -55,56 +61,17 @@ namespace D3HeroesTool.ViewModels
             }
         }
 
-        public Career Career
-        {
-            get { return _career; }
-            set
-            {
-                _career = value;
-                Hero = _career.lastHeroPlayed;
-                OnPropertyChanged("Career");
-            }
-        }
-
-        /// <summary>
-        /// Current hero selected (defaults to the last hero played after career is retrieved)
-        /// </summary>
-        public HeroSummary Hero
-        {
-            get{
-                if (_heroSummary == null && _career != null)
-                    _heroSummary = _career.lastHeroPlayed;
-                return _heroSummary;
-            }
-            set
-            {
-                _heroSummary = value;
-                HeroVM.CurrentHero = _heroSummary;
-                OnPropertyChanged("Hero");
-            }
-        }
-
-        public HeroViewModel HeroVM
+        public BaseViewModel ViewModel
         {
             get
             {
-                if (_heroVM == null)
-                    _heroVM = new HeroViewModel();
-                return _heroVM;
+                return _currentVM;
             }
             set
             {
-                _heroVM = value;
-                OnPropertyChanged("HeroVM");
+                _currentVM = value;
+                OnPropertyChanged("ViewModel");
             }
-        }
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string p)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(p));
         }
         #endregion
 
@@ -120,9 +87,11 @@ namespace D3HeroesTool.ViewModels
 
             string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
                                                                                    LocalizeDictionary.Instance.Culture);
+            ViewModel = _careerVM;
+
             App.FSProvider.Setup(Server, BattleTag, Locale);
             App.FSProvider.GetCareer(
-                (string json) => { Career = D3Data.Deserializer.AsCareer(json); },
+                (string json) => { _careerVM.Career = D3Data.Deserializer.AsCareer(json); },
                 () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); }
                 );
         }
@@ -148,15 +117,12 @@ namespace D3HeroesTool.ViewModels
                     LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo(bnetLocale);
                 }
             }
-            catch (SerializationException ex)
-            {
-                instance = new MainViewModel();
-            }
             catch (Exception)
             {
                 instance = new MainViewModel();
             }
 
+            instance.Init();
             return instance;
         }
 

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:D3HeroesTool" x:Class="D3HeroesTool.Views.MainWindow"
         xmlns:d3d="clr-namespace:D3Data;assembly=D3Data"
-        xmlns:Views="clr-namespace:D3HeroesTool.Views"
         xmlns:d3htu="clr-namespace:D3HeroesTool.Utils"
         xmlns:cmd="clr-namespace:D3HeroesTool.Commands"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
@@ -87,6 +86,6 @@
                     Margin="5" Grid.IsSharedSizeScope="True" Command="cmd:D3Commands.InvokeHeroes"
                     IsEnabled="{qc:Binding '!$P', P={Binding ElementName=tbBattleTag, Path=(Validation.HasError)}}" />
         </Grid>
-        <Views:CareerView DataContext="{Binding}"/>
+        <ContentControl Content="{Binding ViewModel}" />
     </DockPanel>
 </Window>
