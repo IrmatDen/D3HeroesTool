@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace D3HeroesTool
 {
+    /// <summary>
+    /// Repository for usable commands in views
+    /// </summary>
     public static class D3Commands
     {
         public static RoutedCommand InvokeHeroes { get; private set; }

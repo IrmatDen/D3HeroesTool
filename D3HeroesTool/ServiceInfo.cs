@@ -122,14 +122,9 @@ namespace D3HeroesTool
                                                                                    LocalizeDictionary.Instance.Culture);
             App.FSProvider.Setup(Server, BattleTag, Locale);
             App.FSProvider.GetCareer(
-                (string json) =>
-                {
-                    Career = D3Data.Deserializer.AsCareer(json);
-                },
-                () =>
-                {
-                    MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error);
-                });
+                (string json) => { Career = D3Data.Deserializer.AsCareer(json); },
+                () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); }
+                );
         }
         #endregion
 

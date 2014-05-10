@@ -17,6 +17,8 @@ namespace D3HeroesTool
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            QuickConverter.EquationTokenizer.AddNamespace(typeof(object));
+
             FSProvider = new FSBNetService(new WebBNetService());
             FSProvider.RootFolder = Path.Combine(Directory.GetCurrentDirectory(), "cache");
             Directory.CreateDirectory(FSProvider.RootFolder);
