@@ -1,13 +1,7 @@
 ﻿using D3Data;
 using D3Data.Utils;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace D3HeroesTool
@@ -89,7 +83,7 @@ namespace D3HeroesTool
 
         private static bool IsFileOutdated(string filepath)
         {
-            TimeSpan timespan = DateTime.UtcNow - File.GetCreationTimeUtc(filepath);
+            TimeSpan timespan = DateTime.UtcNow - File.GetLastWriteTimeUtc(filepath);
             return timespan > ObsolescenceDelay;
         }
     }

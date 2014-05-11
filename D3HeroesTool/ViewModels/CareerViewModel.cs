@@ -53,9 +53,7 @@ namespace D3HeroesTool.ViewModels
         {
             get
             {
-                if (_heroVM == null)
-                    _heroVM = new HeroViewModel();
-                return _heroVM;
+                return _heroVM ?? (_heroVM = new HeroViewModel());
             }
             set
             {

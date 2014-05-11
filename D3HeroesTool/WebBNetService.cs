@@ -2,7 +2,6 @@
 using D3Data.Utils;
 using System;
 using System.Net;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace D3HeroesTool
@@ -59,9 +58,11 @@ namespace D3HeroesTool
             string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + bgName;
 
             BitmapImage image = new BitmapImage();
-            image.DownloadCompleted += (o, args) => { onImgReceived(image); };
-            image.DownloadFailed += (o, args) => { onError(); };
             image.BeginInit();
+            // Looks like caching gets in the way and deny access to image (rare phenomenon, but still 5-10% of the time)
+            image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            image.DownloadCompleted += (o, args) => onImgReceived(image);
+            image.DownloadFailed += (o, args) => onError();
             image.UriSource = new Uri(url);
             image.EndInit();
         }
