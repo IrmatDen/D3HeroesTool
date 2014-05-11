@@ -7,9 +7,9 @@
              xmlns:c="clr-namespace:D3HeroesTool"
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645"
-             d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}">
+             d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}" MaxWidth="994" MaxHeight="645">
     <UserControl.Background>
-        <ImageBrush ImageSource="{Binding Background}" />
+        <ImageBrush ImageSource="{Binding Background}" Stretch="None" />
     </UserControl.Background>
     <Canvas>
         <TextBlock Width="700" Height="68" TextAlignment="Center" FontSize="48" Foreground="#FFFFEAD4"

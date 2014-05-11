@@ -72,6 +72,7 @@
     <Compile Include="Commands\DataContextCommandAdapter.cs" />
     <Compile Include="Commands\DataContextCommandBinding.cs" />
     <Compile Include="Commands\D3Commands.cs" />
+    <Compile Include="Utils\HeroPortraitSubRectConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CareerViewModel.cs" />
     <Compile Include="ViewModels\SingleDownloadViewModel.cs" />
