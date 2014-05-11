@@ -10,10 +10,11 @@ using System.Windows.Media.Imaging;
 
 namespace D3HeroesTool.ViewModels
 {
-    public class HeroViewModel : INotifyPropertyChanged
+    public class HeroViewModel : BaseViewModel
     {
         private HeroSummary _currentHero;
         ImageSource _bgSource;
+        bool _bgSourceRequested;
 
         public HeroSummary CurrentHero
         {
@@ -44,8 +45,9 @@ namespace D3HeroesTool.ViewModels
         {
             get
             {
-                if (_bgSource == null)
+                if (_bgSource == null && !_bgSourceRequested)
                 {
+                    _bgSourceRequested = true;
                     App.FSProvider.GetBackground(CurrentHero.d3class, CurrentHero.gender,
                         (img) => Background = img,
                         () => { }
@@ -57,20 +59,15 @@ namespace D3HeroesTool.ViewModels
             set
             {
                 _bgSource = value;
+                _bgSourceRequested = false;
                 OnPropertyChanged("Background");
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string p)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(p));
         }
 
         private void Reset()
         {
             _bgSource = null;
+            _bgSourceRequested = false;
         }
     }
 }
