@@ -1,6 +1,7 @@
 ﻿using D3Data;
 using System.Collections;
 using System.Linq;
+using System.Windows.Media;
 
 namespace D3HeroesTool.ViewModels
 {
@@ -9,6 +10,7 @@ namespace D3HeroesTool.ViewModels
         private Career _career;
         private HeroSummary _heroSummary;
         private HeroViewModel _heroVM;
+        private ImageSource _portraitsImg;
 
         #region Properties
         public Career Career
@@ -19,6 +21,16 @@ namespace D3HeroesTool.ViewModels
                 _career = value;
                 Hero = _career.lastHeroPlayed;
                 OnPropertyChanged("Career");
+            }
+        }
+
+        public ImageSource Portraits
+        {
+            get { return _portraitsImg; }
+            set
+            {
+                _portraitsImg = value;
+                OnPropertyChanged("Portraits");
             }
         }
 

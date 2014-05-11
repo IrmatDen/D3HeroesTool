@@ -21,7 +21,7 @@ namespace D3HeroesTool.ViewModels
         private CareerViewModel _careerVM;
         private BaseViewModel _currentVM;
 
-        private bool _downloading, _downloadingPortraits;
+        private bool _downloading;
 
         /// <summary>
         /// DataContractSerializer won't construct the object, so a bit of manual handling is required
@@ -85,7 +85,7 @@ namespace D3HeroesTool.ViewModels
         {
             get
             {
-                return _downloading && _downloadingPortraits;
+                return _downloading && _careerVM.Portraits == null;
             }
             set
             {
@@ -114,9 +114,8 @@ namespace D3HeroesTool.ViewModels
                 () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); }
                 );
             
-            // This call is just to make sure the portraits are cached. Technically,
-            // it should appear in the CareerVM, but we would already be outside of "download" view.
-            App.FSProvider.GetPortraits((img) => { _downloadingPortraits = false; }, () => { });
+            // Load career's portraits as part of our download process
+            App.FSProvider.GetPortraits((img) => { _careerVM.Portraits = img; }, () => { });
         }
         #endregion
 
