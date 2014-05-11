@@ -100,7 +100,6 @@
     <Compile Include="Utils\ComboBoxExtensionMethods.cs" />
     <Compile Include="Utils\ComboBoxWidthFromItemBehavior.cs" />
     <Compile Include="Utils\EnumDisplayer.cs" />
-    <Compile Include="Utils\HeroNameLevelConverter.cs" />
     <Compile Include="Utils\SimpleBiMap.cs" />
     <Compile Include="Utils\ValidationErrorConverter.cs" />
     <Compile Include="Views\SingleDownloadView.xaml.cs">

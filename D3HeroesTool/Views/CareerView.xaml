@@ -9,7 +9,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
-        <d3htu:HeroNameLevelConverter x:Key="HeroNameLevelConverter" />
         <d3htu:HeroPortraitSubRectConverter x:Key="HeroPortraitSubRectConverter" />
         <Style x:Key="HeroTabItem" TargetType="TextBlock">
             <Style.Triggers>
@@ -34,8 +33,14 @@
                             </MultiBinding>
                         </Image.Source>
                     </Image>
-                    <TextBlock Text="{Binding Converter={StaticResource HeroNameLevelConverter}}"
-                               Style="{StaticResource HeroTabItem}" />
+                    <Grid MaxWidth="83">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding level}" Style="{StaticResource HeroTabItem}" Grid.Column="0" />
+                        <TextBlock Text="{Binding name}" Margin="3,0,0,0" TextTrimming="CharacterEllipsis" Grid.Column="1" />
+                    </Grid>
                 </StackPanel>
             </DataTemplate>
         </TabControl.ItemTemplate>
