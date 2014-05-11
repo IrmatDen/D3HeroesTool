@@ -1,7 +1,9 @@
 ﻿using D3Data;
+using D3Data.Utils;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace D3HeroesTool
 {
@@ -48,6 +50,20 @@ namespace D3HeroesTool
                     else
                         onError();
                 });
+        }
+
+        public void GetBackground(D3Class desiredClass, Gender desiredGender, Action<BitmapImage> onImgReceived, Action onError)
+        {
+            string d3className = Misc.GetBackgroundNameForClass(desiredClass);
+            string bgName = String.Format("{0}-{1}.jpg", d3className, desiredGender.ToString()).ToLower();
+            string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + bgName;
+
+            BitmapImage image = new BitmapImage();
+            image.DownloadCompleted += (o, args) => { onImgReceived(image); };
+            image.DownloadFailed += (o, args) => { onError(); };
+            image.BeginInit();
+            image.UriSource = new Uri(url);
+            image.EndInit();
         }
 
         private void RaiseFinishedEvent(BNetDownloadFinishedEventArgs args)

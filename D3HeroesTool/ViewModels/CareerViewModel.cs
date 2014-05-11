@@ -1,5 +1,6 @@
 ﻿using D3Data;
 using System.Collections;
+using System.Linq;
 
 namespace D3HeroesTool.ViewModels
 {

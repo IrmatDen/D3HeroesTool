@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace D3Data
 {
@@ -54,6 +56,12 @@ namespace D3Data
     public interface IBNetService
     {
         void Setup(Server s, string battleTag, Locale l = Locale.en_US);
+
+        // Data downloads
         void GetCareer(Action<string> onCareerJSonReceived, Action onError);
+
+        // Media downloads
+        void GetBackground(D3Class desiredClass, Gender desiredGender, Action<BitmapImage> onImgReceived, Action onError);
+        //void GetPortraits(Action<ImageSource> onImgReceived, Action onError);
     }
 }
