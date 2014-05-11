@@ -20,7 +20,9 @@
                    TextAlignment="Center" Foreground="#FFD4B473">
             <Run Text="{Binding Mode=OneWay, Path=CurrentHero.level}" FontWeight="Bold" />
             <Run Text="(" Foreground="#FFA791C2" /><Run Text="{Binding Mode=OneWay, Path=CurrentHero.paragonLevel}" Foreground="#FFA791C2" /><Run Text=")" Foreground="#FFA791C2" />
-            <Run Text="{Binding Mode=OneWay, Path=CurrentHero.d3class}" />
+            <Run Text="{Binding Mode=OneWay, Path=CurrentHero.d3class}" FontWeight="Bold" />
+            <Run Text="{Binding Mode=OneWay, Path=HeaderHardcoreSeparator}" FontWeight="Bold" />
+            <Run Text="{Binding Mode=OneWay, Path=HeaderHardcore}" Foreground="Red" FontWeight="Bold" />
         </TextBlock>
     </Canvas>
 </UserControl>

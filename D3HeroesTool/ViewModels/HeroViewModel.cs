@@ -6,10 +6,8 @@ namespace D3HeroesTool.ViewModels
 {
     public class HeroViewModel : BaseViewModel
     {
+        #region Properties
         private HeroSummary _currentHero;
-        ImageSource _bgSource;
-        bool _bgSourceRequested;
-
         public HeroSummary CurrentHero
         {
             get { return _currentHero; }
@@ -21,6 +19,7 @@ namespace D3HeroesTool.ViewModels
             }
         }
 
+        #region Hero headers related props
         public string NameFirstLetter
         {
             get
@@ -39,7 +38,28 @@ namespace D3HeroesTool.ViewModels
                 return CurrentHero.name.Substring(1).ToUpper();
             }
         }
+        public string HeaderHardcoreSeparator
+        {
+            get
+            {
+                if (CurrentHero == null || !CurrentHero.hardcore)
+                    return null;
+                return "-";
+            }
+        }
+        public string HeaderHardcore
+        {
+            get
+            {
+                if (CurrentHero == null || !CurrentHero.hardcore)
+                    return null;
+                return "Hardcore";
+            }
+        }
+        #endregion
 
+        ImageSource _bgSource;
+        bool _bgSourceRequested;
         public ImageSource Background
         {
             get
@@ -65,6 +85,7 @@ namespace D3HeroesTool.ViewModels
                 OnPropertyChanged("Background");
             }
         }
+        #endregion
 
         private void Reset()
         {
