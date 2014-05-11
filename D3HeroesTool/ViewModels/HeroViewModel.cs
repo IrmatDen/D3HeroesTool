@@ -50,7 +50,7 @@ namespace D3HeroesTool.ViewModels
                 if (_bgSource == null && !_bgSourceRequested)
                 {
                     _bgSourceRequested = true;
-                    App.FSProvider.GetBackground(CurrentHero.d3class, CurrentHero.gender,
+                    App.FSProvider.GetBackground(CurrentHero,
                         (img) => Background = img,
                         () => { }
                         );

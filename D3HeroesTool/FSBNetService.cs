@@ -50,11 +50,11 @@ namespace D3HeroesTool
             }
         }
 
-        public void GetBackground(D3Class desiredClass, Gender desiredGender, Action<BitmapImage> onImgReceived, Action onError)
+        public void GetBackground(HeroSummary hero, Action<BitmapImage> onImgReceived, Action onError)
         {
-            string d3className = Misc.GetBackgroundNameForClass(desiredClass);
+            string d3className = Misc.GetBackgroundNameForClass(hero.d3class);
 
-            string bgName = String.Format("{0}-{1}.jpg", d3className, desiredGender.ToString()).ToLower();
+            string bgName = String.Format("{0}-{1}.jpg", d3className, hero.gender.ToString()).ToLower();
             string bgPath = Path.Combine(RootFolder, "static");
             Directory.CreateDirectory(bgPath);
 
@@ -66,7 +66,7 @@ namespace D3HeroesTool
                 onImgReceived(new BitmapImage(new Uri(bgPath, UriKind.Relative)));
             else
             {
-                WebAccessor.GetBackground(desiredClass, desiredGender,
+                WebAccessor.GetBackground(hero,
                     (BitmapImage img) =>
                     {
                         using (Stream ostream = new FileStream(bgPath, FileMode.Create))

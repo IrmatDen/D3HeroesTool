@@ -51,10 +51,10 @@ namespace D3HeroesTool
                 });
         }
 
-        public void GetBackground(D3Class desiredClass, Gender desiredGender, Action<BitmapImage> onImgReceived, Action onError)
+        public void GetBackground(HeroSummary hero, Action<BitmapImage> onImgReceived, Action onError)
         {
-            string d3className = Misc.GetBackgroundNameForClass(desiredClass);
-            string bgName = String.Format("{0}-{1}.jpg", d3className, desiredGender.ToString()).ToLower();
+            string d3className = Misc.GetBackgroundNameForClass(hero.d3class);
+            string bgName = String.Format("{0}-{1}.jpg", d3className, hero.gender.ToString()).ToLower();
             string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + bgName;
 
             BitmapImage image = new BitmapImage();
