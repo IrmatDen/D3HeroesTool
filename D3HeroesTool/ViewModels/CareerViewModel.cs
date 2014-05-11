@@ -21,6 +21,7 @@ namespace D3HeroesTool.ViewModels
                 _career = value;
                 Hero = _career.lastHeroPlayed;
                 OnPropertyChanged("Career");
+                OnPropertyChanged("Heroes");
             }
         }
 
