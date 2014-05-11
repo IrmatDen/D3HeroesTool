@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Windows;
+using System.Windows.Media;
 using WPFLocalizeExtension.Engine;
 
 namespace D3HeroesTool.ViewModels
@@ -17,9 +18,10 @@ namespace D3HeroesTool.ViewModels
         private Server _server;
         private Locale _locale;
         private string _battletag;
-        private bool _downloading;
         private CareerViewModel _careerVM;
         private BaseViewModel _currentVM;
+
+        private bool _downloading, _downloadingPortraits;
 
         /// <summary>
         /// DataContractSerializer won't construct the object, so a bit of manual handling is required
@@ -83,7 +85,7 @@ namespace D3HeroesTool.ViewModels
         {
             get
             {
-                return _downloading;
+                return _downloading && _downloadingPortraits;
             }
             set
             {
@@ -111,6 +113,10 @@ namespace D3HeroesTool.ViewModels
                 (string json) => { _careerVM.Career = D3Data.Deserializer.AsCareer(json); ViewModel = _careerVM; },
                 () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); }
                 );
+            
+            // This call is just to make sure the portraits are cached. Technically,
+            // it should appear in the CareerVM, but we would already be outside of "download" view.
+            App.FSProvider.GetPortraits((img) => { _downloadingPortraits = false; }, () => { });
         }
         #endregion
 

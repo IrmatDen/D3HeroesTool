@@ -67,6 +67,20 @@ namespace D3HeroesTool
             image.EndInit();
         }
 
+        public void GetPortraits(Action<BitmapImage> onImgReceived, Action onError)
+        {
+            string url = "http://eu.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg";
+
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            // Looks like caching gets in the way and deny access to image (rare phenomenon, but still 5-10% of the time)
+            image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            image.DownloadCompleted += (o, args) => onImgReceived(image);
+            image.DownloadFailed += (o, args) => onError();
+            image.UriSource = new Uri(url);
+            image.EndInit();
+        }
+
         private void RaiseFinishedEvent(BNetDownloadFinishedEventArgs args)
         {
             if (OnDownloadCareerFinished != null)
