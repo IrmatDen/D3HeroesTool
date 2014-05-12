@@ -56,24 +56,21 @@ namespace D3HeroesTool
             string d3className = Misc.GetBackgroundNameForClass(hero.d3class);
             string bgName = String.Format("{0}-{1}.jpg", d3className, hero.gender.ToString()).ToLower();
             string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + bgName;
-
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            // Looks like caching gets in the way and deny access to image (rare phenomenon, but still 5-10% of the time)
-            image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            image.DownloadCompleted += (o, args) => onImgReceived(image);
-            image.DownloadFailed += (o, args) => onError();
-            image.UriSource = new Uri(url);
-            image.EndInit();
+            DownloadImage(url, onImgReceived, onError);
         }
 
         public void GetPortraits(Action<BitmapImage> onImgReceived, Action onError)
         {
             string url = "http://eu.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg";
+            DownloadImage(url, onImgReceived, onError);
+        }
 
+        private void DownloadImage(string url, Action<BitmapImage> onImgReceived, Action onError)
+        {
             BitmapImage image = new BitmapImage();
             image.BeginInit();
             // Looks like caching gets in the way and deny access to image (rare phenomenon, but still 5-10% of the time)
+            // Since caching is done through FSBNetService, might as well disable that until more is understood...
             image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
             image.DownloadCompleted += (o, args) => onImgReceived(image);
             image.DownloadFailed += (o, args) => onError();
@@ -81,6 +78,7 @@ namespace D3HeroesTool
             image.EndInit();
         }
 
+        #region Events
         private void RaiseFinishedEvent(BNetDownloadFinishedEventArgs args)
         {
             if (OnDownloadCareerFinished != null)
@@ -92,5 +90,6 @@ namespace D3HeroesTool
             if (OnDownloadCareerStarted != null)
                 OnDownloadCareerStarted(this, args);
         }
+        #endregion
     }
 }
