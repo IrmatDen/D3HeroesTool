@@ -16,5 +16,8 @@
         <!-- Global skinning -->
         <SolidColorBrush x:Key="HeroNameColor" Color="#FFFFEAD4"  />
         <SolidColorBrush x:Key="HeroInfoColor" Color="#FFD4B473" />
+        
+        <!-- Converters -->
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
     </Application.Resources>
 </Application>

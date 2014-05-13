@@ -36,7 +36,7 @@
                     <TextBlock Text="{Binding d3class}" Style="{StaticResource HardcoreDependantInfoColor}" Margin="3,0,0,0" Grid.Column="1" />
                 </Grid>
                 <TextBlock Text="Hardcore" Style="{StaticResource HardcoreDependantInfoColor}"
-                           Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding hardcore}}"/>
+                           Visibility="{Binding hardcore, Converter={StaticResource BoolToVisibility}}"/>
             </StackPanel>
         </ToolTip>
     </UserControl.Resources>
