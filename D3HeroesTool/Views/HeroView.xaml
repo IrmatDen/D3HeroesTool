@@ -12,8 +12,8 @@
         <ImageBrush ImageSource="{Binding Background}" Stretch="None" />
     </UserControl.Background>
     <Canvas>
-        <TextBlock Width="700" Height="68" TextAlignment="Center" FontSize="48" Foreground="#FFFFEAD4"
-                   FontFamily="../resources/#Exocet Light" Canvas.Right="15" Canvas.Top="56">
+        <TextBlock Width="700" Height="68" TextAlignment="Center" FontSize="48"
+                   FontFamily="../resources/#Exocet Light" Canvas.Right="15" Canvas.Top="56" Foreground="{StaticResource HeroNameColor}">
             <Run FontSize="66" Text="{Binding Mode=OneWay, Path=NameFirstLetter}" BaselineAlignment="Center" /><Run Text="{Binding Mode=OneWay, Path=NameOtherLetters}" />
         </TextBlock>
         <TextBlock Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15"

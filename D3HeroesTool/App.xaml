@@ -5,11 +5,16 @@
              xmlns:ViewModels="clr-namespace:D3HeroesTool.ViewModels"
              StartupUri="Views\MainWindow.xaml" Startup="Application_Startup">
     <Application.Resources>
+        <!-- Data templates -->
         <DataTemplate DataType="{x:Type ViewModels:CareerViewModel}">
             <Views:CareerView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:SingleDownloadViewModel}">
             <Views:SingleDownloadView />
         </DataTemplate>
+
+        <!-- Global skinning -->
+        <SolidColorBrush x:Key="HeroNameColor" Color="#FFFFEAD4"  />
+        <SolidColorBrush x:Key="HeroInfoColor" Color="#FFD4B473" />
     </Application.Resources>
 </Application>

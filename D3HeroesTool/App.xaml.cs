@@ -23,6 +23,7 @@ namespace D3HeroesTool
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             QuickConverter.EquationTokenizer.AddNamespace(typeof(object));
+            QuickConverter.EquationTokenizer.AddNamespace(typeof(System.Windows.Visibility));
 
             WebProvider = new WebBNetService();
             FSProvider = new FSBNetService(WebProvider);
