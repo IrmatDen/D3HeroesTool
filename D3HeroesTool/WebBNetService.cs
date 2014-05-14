@@ -65,6 +65,12 @@ namespace D3HeroesTool
             DownloadImage(url, onImgReceived, onError);
         }
 
+        public void GetTabStates(Action<BitmapImage> onImgReceived, Action onError)
+        {
+            string url = "http://eu.battle.net/d3/static/images/profile/hero/hero-nav-frames.png";
+            DownloadImage(url, onImgReceived, onError);
+        }
+
         private void DownloadImage(string url, Action<BitmapImage> onImgReceived, Action onError)
         {
             BitmapImage image = new BitmapImage();

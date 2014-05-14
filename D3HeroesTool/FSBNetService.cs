@@ -106,6 +106,33 @@ namespace D3HeroesTool
             }
         }
 
+        public void GetTabStates(Action<BitmapImage> onImgReceived, Action onError)
+        {
+            string bgPath = Path.Combine(RootFolder, "static");
+            Directory.CreateDirectory(bgPath);
+
+            bgPath = Path.Combine(bgPath, "hero-nav-frames.jpg");
+
+            FileInfo fi = new FileInfo(bgPath);
+            if (File.Exists(bgPath) && fi.Length > 0)
+                onImgReceived(new BitmapImage(new Uri(bgPath, UriKind.Relative)));
+            else
+            {
+                WebAccessor.GetTabStates(
+                    (BitmapImage img) =>
+                    {
+                        using (Stream ostream = new FileStream(bgPath, FileMode.Create))
+                        {
+                            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                            encoder.Frames.Add(BitmapFrame.Create(img));
+                            encoder.Save(ostream);
+                        }
+                        onImgReceived(img);
+                    },
+                    onError);
+            }
+        }
+
         private static bool IsFileOutdated(string filepath)
         {
             TimeSpan timespan = DateTime.UtcNow - File.GetLastWriteTimeUtc(filepath);

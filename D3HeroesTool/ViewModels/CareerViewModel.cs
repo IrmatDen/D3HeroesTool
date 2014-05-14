@@ -11,6 +11,7 @@ namespace D3HeroesTool.ViewModels
         private HeroSummary _heroSummary;
         private HeroViewModel _heroVM;
         private ImageSource _portraitsImg;
+        private ImageSource _tabStates;
 
         #region Properties
         public Career Career
@@ -32,6 +33,16 @@ namespace D3HeroesTool.ViewModels
             {
                 _portraitsImg = value;
                 OnPropertyChanged("Portraits");
+            }
+        }
+
+        public ImageSource TabStates
+        {
+            get { return _tabStates; }
+            set
+            {
+                _tabStates = value;
+                OnPropertyChanged("TabStates");
             }
         }
 

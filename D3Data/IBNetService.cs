@@ -63,5 +63,6 @@ namespace D3Data
         // Media downloads
         void GetBackground(HeroSummary hero, Action<BitmapImage> onImgReceived, Action onError);
         void GetPortraits(Action<BitmapImage> onImgReceived, Action onError);
+        void GetTabStates(Action<BitmapImage> onImgReceived, Action onError);
     }
 }

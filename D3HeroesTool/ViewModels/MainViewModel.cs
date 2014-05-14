@@ -114,8 +114,9 @@ namespace D3HeroesTool.ViewModels
                 () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); }
                 );
             
-            // Load career's portraits as part of our download process
+            // Load career's portraits and tab states as part of our download process
             App.FSProvider.GetPortraits((img) => { _careerVM.Portraits = img; }, () => { });
+            App.FSProvider.GetTabStates((img) => { _careerVM.TabStates = img; }, () => { });
         }
         #endregion
 
