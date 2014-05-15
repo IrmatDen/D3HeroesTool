@@ -7,7 +7,7 @@
              xmlns:d3htu="clr-namespace:D3HeroesTool.Utils"
              xmlns:qc="clr-namespace:QuickConverter;assembly=QuickConverter"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Background="#302A21">
+             d:DesignHeight="300" d:DesignWidth="300" Background="{DynamicResource DarkBrownBrush}">
 
     <UserControl.Resources>
         <d3htu:HeroPortraitSubRectConverter x:Key="HeroPortraitSubRectConverter" />
@@ -125,8 +125,8 @@
     </UserControl.Resources>
 
     <TabControl Name="tcHeroes" Margin="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"
-                    ItemsSource="{Binding Heroes, Mode=OneWay}"
-                    SelectedItem="{Binding Hero, Mode=TwoWay}" Background="#302A21" BorderBrush="#302A21">
+                ItemsSource="{Binding Heroes, Mode=OneWay}" SelectedItem="{Binding Hero, Mode=TwoWay}"
+                Background="{DynamicResource DarkBrownBrush}" BorderBrush="{DynamicResource DarkBrownBrush}">
         <TabControl.ItemTemplate>
             <DataTemplate>
                 <StackPanel ToolTip="{StaticResource TabItemsToolTip}">

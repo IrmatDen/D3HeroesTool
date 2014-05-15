@@ -14,8 +14,12 @@
         </DataTemplate>
 
         <!-- Global skinning -->
+        <Color x:Key="LightBrown">#FF221A0F</Color>
+        <Color x:Key="DarkBrown">#FF12110F</Color>
+        <SolidColorBrush x:Key="DarkBrownBrush" Color="{StaticResource DarkBrown}"  />
         <SolidColorBrush x:Key="HeroNameColor" Color="#FFFFEAD4"  />
         <SolidColorBrush x:Key="HeroInfoColor" Color="#FFD4B473" />
+        <SolidColorBrush x:Key="TextLight" Color="#FFF3E6D0" />
         
         <!-- Converters -->
         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />

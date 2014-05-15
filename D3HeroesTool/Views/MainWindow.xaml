@@ -12,6 +12,10 @@
         lex:ResxLocalizationProvider.DefaultDictionary="ResourceStrings"
         Title="D3Heroes" Height="265.455" Width="709.739" SizeToContent="WidthAndHeight">
     <Window.Resources>
+        <LinearGradientBrush x:Key="TopPanelGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="{StaticResource LightBrown}" Offset="0"/>
+            <GradientStop Color="{StaticResource DarkBrown}" Offset="1"/>
+        </LinearGradientBrush>
         <d3htu:ValidationErrorConverter x:Key="ValidationErrorConverter" />
         <d3htu:EnumDisplayer Type="{x:Type d3d:Server}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="ServersED" />
         <d3htu:EnumDisplayer Type="{x:Type d3d:Locale}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="LocalesED" />
@@ -43,13 +47,13 @@
             <Setter Property="d3htu:ComboBoxWidthFromItemBehavior.ComboBoxRestrictMinWidthFromItems" Value="True" />
         </Style>
     </Window.Resources>
-    
+
     <Window.CommandBindings>
         <cmd:DataContextCommandBinding Command="cmd:D3Commands.InvokeHeroes" Executed="LoadCareer" CanExecute="CanLoadCareer" />
     </Window.CommandBindings>
     
-    <DockPanel Name="mainStack" Margin="5" >
-        <Grid Name="pnlServiceInfo" Height="78" DockPanel.Dock="Top">
+    <DockPanel Name="mainStack">
+        <Grid Name="pnlServiceInfo" Height="78" DockPanel.Dock="Top" Background="{DynamicResource TopPanelGradient}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -60,12 +64,12 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Name="lblServer" Content="{lex:Loc}" Margin="5" Grid.IsSharedSizeScope="True" />
+            <Label Name="lblServer" Content="{lex:Loc}" Margin="5" Grid.IsSharedSizeScope="True" Foreground="{DynamicResource TextLight}" />
             <ComboBox x:Name="cbServer" ItemsSource="{Binding DisplayNames, Source={StaticResource ServersED}}"
                 SelectedValue="{Binding Server, Converter={StaticResource ServersED}}"
                 Grid.Column="1" Margin="5" Grid.IsSharedSizeScope="True"
                 Style="{StaticResource AutoSizedComboBox}"/>
-            <Label Name="lblBattleTag" Content="{lex:Loc}" Grid.Column="2" Margin="5" Grid.IsSharedSizeScope="True"/>
+            <Label Name="lblBattleTag" Content="{lex:Loc}" Grid.Column="2" Margin="5" Grid.IsSharedSizeScope="True" Foreground="{DynamicResource TextLight}"/>
             <TextBox x:Name="tbBattleTag" Grid.Column="3" Margin="5" Style="{StaticResource validatedTextBox}"
                      Validation.ErrorTemplate="{StaticResource validationTemplate}" Grid.IsSharedSizeScope="True"
                      MaxWidth="Infinity" MinWidth="125" VerticalContentAlignment="Center">
@@ -77,7 +81,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <Label Name="lblLocale" Content="{lex:Loc}" Grid.Row="1" Margin="5" Grid.IsSharedSizeScope="True"/>
+            <Label Name="lblLocale" Content="{lex:Loc}" Grid.Row="1" Margin="5" Grid.IsSharedSizeScope="True" Foreground="{DynamicResource TextLight}"/>
             <ComboBox x:Name="cbLocale" ItemsSource="{Binding DisplayNames, Source={StaticResource LocalesED}}"
                 SelectedValue="{Binding Locale, Converter={StaticResource LocalesED}}"
                 Grid.Column="1" Grid.Row="1" Margin="5" Grid.IsSharedSizeScope="True"
