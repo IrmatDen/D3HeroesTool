@@ -37,17 +37,30 @@ namespace D3HeroesTool.Utils
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (coords == null)
-                BuildPortraitsCoords();
-
             // values checks
-            if (values.Length < 2 || values[0].GetType() != typeof(HeroSummary) || values[1].GetType() != typeof(BitmapImage))
+            if (values.Length != 2)
             {
                 throw new Exception(String.Format("{0} expects 2 objects of types {1} and {2}",
                     typeof(HeroPortraitSubRectConverter).ToString(),
                     typeof(HeroSummary).ToString(),
                     typeof(BitmapImage).ToString()));
             }
+
+            // null values? woopsie, something went wrong, but try not to crash (at least not yet)
+            if (values[0] == null || values[1] == null)
+                return null;
+
+            // values checks
+            if (values[0].GetType() != typeof(HeroSummary) || values[1].GetType() != typeof(BitmapImage))
+            {
+                throw new Exception(String.Format("{0} expects 2 objects of types {1} and {2}",
+                    typeof(HeroPortraitSubRectConverter).ToString(),
+                    typeof(HeroSummary).ToString(),
+                    typeof(BitmapImage).ToString()));
+            }
+
+            if (coords == null)
+                BuildPortraitsCoords();
 
             var hero = values[0] as HeroSummary;
             var img = values[1] as BitmapImage;

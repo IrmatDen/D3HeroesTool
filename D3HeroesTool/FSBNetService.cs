@@ -52,73 +52,42 @@ namespace D3HeroesTool
 
         public void GetBackground(HeroSummary hero, Action<BitmapImage> onImgReceived, Action onError)
         {
-            string bgPath = Path.Combine(RootFolder, "static");
-            Directory.CreateDirectory(bgPath);
-
             string d3className = Misc.GetBackgroundNameForClass(hero.d3class);
             string bgName = String.Format("{0}-{1}.jpg", d3className, hero.gender.ToString()).ToLower();
-            bgPath = Path.Combine(bgPath, bgName);
-
-            FileInfo fi = new FileInfo(bgPath);
-            if (File.Exists(bgPath) && fi.Length > 0)
-                onImgReceived(new BitmapImage(new Uri(bgPath, UriKind.Relative)));
-            else
-            {
-                WebAccessor.GetBackground(hero,
-                    (BitmapImage img) =>
-                    {
-                        using (Stream ostream = new FileStream(bgPath, FileMode.Create))
-                        {
-                            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                            encoder.Frames.Add(BitmapFrame.Create(img));
-                            encoder.Save(ostream);
-                        }
-                        onImgReceived(img);
-                    },
-                    onError);
-            }
+            ServeImage(bgName, onImgReceived, onError,
+                (rcv_evt, err) => WebAccessor.GetBackground(hero, rcv_evt, err));
         }
 
         public void GetPortraits(Action<BitmapImage> onImgReceived, Action onError)
         {
-            string bgPath = Path.Combine(RootFolder, "static");
-            Directory.CreateDirectory(bgPath);
-
-            bgPath = Path.Combine(bgPath, "hero-nav-portraits.jpg");
-
-            FileInfo fi = new FileInfo(bgPath);
-            if (File.Exists(bgPath) && fi.Length > 0)
-                onImgReceived(new BitmapImage(new Uri(bgPath, UriKind.Relative)));
-            else
-            {
-                WebAccessor.GetPortraits(
-                    (BitmapImage img) =>
-                    {
-                        using (Stream ostream = new FileStream(bgPath, FileMode.Create))
-                        {
-                            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                            encoder.Frames.Add(BitmapFrame.Create(img));
-                            encoder.Save(ostream);
-                        }
-                        onImgReceived(img);
-                    },
-                    onError);
-            }
+            ServeImage("hero-nav-portraits.jpg", onImgReceived, onError, WebAccessor.GetPortraits);
         }
 
         public void GetTabStates(Action<BitmapImage> onImgReceived, Action onError)
         {
+            ServeImage("hero-nav-frames.png", onImgReceived, onError, WebAccessor.GetTabStates);
+        }
+
+        private static bool IsFileOutdated(string filepath)
+        {
+            TimeSpan timespan = DateTime.UtcNow - File.GetLastWriteTimeUtc(filepath);
+            return timespan > ObsolescenceDelay;
+        }
+
+        private void ServeImage(string imageFileName, Action<BitmapImage> onImgReceived, Action onError,
+                                Action<Action<BitmapImage>, Action> webFallbackCall)
+        {
             string bgPath = Path.Combine(RootFolder, "static");
             Directory.CreateDirectory(bgPath);
 
-            bgPath = Path.Combine(bgPath, "hero-nav-frames.png");
+            bgPath = Path.Combine(bgPath, imageFileName);
 
             FileInfo fi = new FileInfo(bgPath);
             if (File.Exists(bgPath) && fi.Length > 0)
                 onImgReceived(new BitmapImage(new Uri(bgPath, UriKind.Relative)));
             else
             {
-                WebAccessor.GetTabStates(
+                webFallbackCall(
                     (BitmapImage img) =>
                     {
                         using (Stream ostream = new FileStream(bgPath, FileMode.Create))
@@ -131,12 +100,6 @@ namespace D3HeroesTool
                     },
                     onError);
             }
-        }
-
-        private static bool IsFileOutdated(string filepath)
-        {
-            TimeSpan timespan = DateTime.UtcNow - File.GetLastWriteTimeUtc(filepath);
-            return timespan > ObsolescenceDelay;
         }
     }
 }
