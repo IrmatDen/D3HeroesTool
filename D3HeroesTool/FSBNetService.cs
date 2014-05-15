@@ -92,7 +92,7 @@ namespace D3HeroesTool
                     {
                         using (Stream ostream = new FileStream(bgPath, FileMode.Create))
                         {
-                            PngBitmapEncoder encoder = new PngBitmapEncoder();
+                            var encoder = GetEncoderForExtension(fi.Extension);
                             encoder.Frames.Add(BitmapFrame.Create(img));
                             encoder.Save(ostream);
                         }
@@ -100,6 +100,18 @@ namespace D3HeroesTool
                     },
                     onError);
             }
+        }
+
+        private BitmapEncoder GetEncoderForExtension(string ext)
+        {
+            if (ext.Equals(".png", StringComparison.InvariantCultureIgnoreCase))
+                return new PngBitmapEncoder();
+
+            if (ext.Equals(".jpg", StringComparison.InvariantCultureIgnoreCase) ||
+                ext.Equals(".jpeg", StringComparison.InvariantCultureIgnoreCase))
+                return new JpegBitmapEncoder();
+
+            return null;
         }
     }
 }
