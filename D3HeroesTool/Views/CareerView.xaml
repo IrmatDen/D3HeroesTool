@@ -138,7 +138,7 @@
                             </MultiBinding>
                         </Image.Source>
                     </Image>
-                    <Grid MaxWidth="73" Margin="4,4,0,0">
+                    <Grid MaxWidth="73" Margin="4,3,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
