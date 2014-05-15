@@ -111,7 +111,7 @@ namespace D3HeroesTool
             string bgPath = Path.Combine(RootFolder, "static");
             Directory.CreateDirectory(bgPath);
 
-            bgPath = Path.Combine(bgPath, "hero-nav-frames.jpg");
+            bgPath = Path.Combine(bgPath, "hero-nav-frames.png");
 
             FileInfo fi = new FileInfo(bgPath);
             if (File.Exists(bgPath) && fi.Length > 0)
@@ -123,7 +123,7 @@ namespace D3HeroesTool
                     {
                         using (Stream ostream = new FileStream(bgPath, FileMode.Create))
                         {
-                            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                            PngBitmapEncoder encoder = new PngBitmapEncoder();
                             encoder.Frames.Add(BitmapFrame.Create(img));
                             encoder.Save(ostream);
                         }

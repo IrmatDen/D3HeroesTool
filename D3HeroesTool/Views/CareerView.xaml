@@ -7,7 +7,7 @@
              xmlns:d3htu="clr-namespace:D3HeroesTool.Utils"
              xmlns:qc="clr-namespace:QuickConverter;assembly=QuickConverter"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Background="Black">
 
     <UserControl.Resources>
         <d3htu:HeroPortraitSubRectConverter x:Key="HeroPortraitSubRectConverter" />
@@ -106,7 +106,7 @@
         </Style>
         <ToolTip x:Key="TabItemsToolTip" DataContext="{Binding Path=PlacementTarget.DataContext,
                                                        RelativeSource={RelativeSource Self}}"
-                 Background="Black">
+                 Background="Black" Placement="Top" VerticalOffset="-6" HorizontalOffset="93">
             <StackPanel Margin="5">
                 <TextBlock FontFamily="../resources/#Exocet Light" Text="{Binding name}"
                            Foreground="{StaticResource HeroNameColor}" FontSize="28" />
@@ -126,7 +126,7 @@
 
     <TabControl Name="tcHeroes" Margin="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"
                     ItemsSource="{Binding Heroes, Mode=OneWay}"
-                    SelectedItem="{Binding Hero, Mode=TwoWay}" Background="Black">
+                    SelectedItem="{Binding Hero, Mode=TwoWay}" Background="Black" BorderBrush="Black">
         <TabControl.ItemTemplate>
             <DataTemplate>
                 <StackPanel ToolTip="{StaticResource TabItemsToolTip}">
