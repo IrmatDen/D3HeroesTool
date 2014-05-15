@@ -13,15 +13,22 @@
         <d3htu:HeroPortraitSubRectConverter x:Key="HeroPortraitSubRectConverter" />
         <ImageBrush x:Key="Unselected_SC_Tab" ImageSource="{Binding DataContext.TabStates,
                                                             RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
-                    Stretch="None" AlignmentX="Left" AlignmentY="Top"
-                    ViewboxUnits="Absolute" Viewbox="0,124,1,1" />
+                    Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="0,124,1,1" />
         <ImageBrush x:Key="Selected_SC_Tab" ImageSource="{Binding DataContext.TabStates,
                                                           RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
-                    Stretch="None" AlignmentX="Left" AlignmentY="Top" />
+                    Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" />
         <ImageBrush x:Key="Hovered_SC_Tab" ImageSource="{Binding DataContext.TabStates,
                                                          RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
-                    Stretch="None" AlignmentX="Left" AlignmentY="Top"
-                    ViewboxUnits="Absolute" Viewbox="0,248,1,1" />
+                    Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="0,248,1,1" />
+        <ImageBrush x:Key="Unselected_HC_Tab" ImageSource="{Binding DataContext.TabStates,
+                                                            RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                    Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="103,124,1,1" />
+        <ImageBrush x:Key="Selected_HC_Tab" ImageSource="{Binding DataContext.TabStates,
+                                                          RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                    Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="103,0,1,1" />
+        <ImageBrush x:Key="Hovered_HC_Tab" ImageSource="{Binding DataContext.TabStates,
+                                                         RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                    Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="103,248,1,1" />
         <Style x:Key="HardcoreDependantInfoColor" TargetType="TextBlock">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding hardcore}" Value="true">
@@ -45,19 +52,53 @@
                                               RecognizesAccessKey="True"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="False">
+                            <!-- Unselected Hardcore and softcore -->
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding hardcore}" Value="True" />
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Unselected_HC_Tab}" />
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding hardcore}" Value="False" />
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
+                                </MultiDataTrigger.Conditions>
                                 <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Unselected_SC_Tab}" />
-                            </Trigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsMouseOver" Value="True" />
-                                    <Condition Property="IsSelected" Value="False" />
-                                </MultiTrigger.Conditions>
+                            </MultiDataTrigger>
+                            <!-- Hovered Hardcore and softcore -->
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding hardcore}" Value="True" />
+                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Hovered_HC_Tab}" />
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding hardcore}" Value="False" />
+                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
+                                </MultiDataTrigger.Conditions>
                                 <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Hovered_SC_Tab}" />
-                            </MultiTrigger>
-                            <Trigger Property="IsSelected" Value="True">
+                            </MultiDataTrigger>
+                            <!-- Selected Hardcore and softcore -->
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding hardcore}" Value="True" />
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Selected_HC_Tab}" />
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding hardcore}" Value="False" />
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
+                                </MultiDataTrigger.Conditions>
                                 <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Selected_SC_Tab}" />
-                            </Trigger>
+                            </MultiDataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
