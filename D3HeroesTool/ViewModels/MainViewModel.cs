@@ -23,6 +23,11 @@ namespace D3HeroesTool.ViewModels
 
         private bool _downloading;
 
+        public MainViewModel()
+        {
+            Init();
+        }
+
         /// <summary>
         /// DataContractSerializer won't construct the object, so a bit of manual handling is required
         /// </summary>
