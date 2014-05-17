@@ -53,26 +53,17 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <!-- Unselected Hardcore and softcore -->
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding hardcore}" Value="True" />
-                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
-                                </MultiDataTrigger.Conditions>
+                            <DataTrigger Binding="{Binding hardcore}" Value="True">
                                 <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Unselected_HC_Tab}" />
-                            </MultiDataTrigger>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding hardcore}" Value="False" />
-                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
-                                </MultiDataTrigger.Conditions>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding hardcore}" Value="False">
                                 <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Unselected_SC_Tab}" />
-                            </MultiDataTrigger>
+                            </DataTrigger>
                             <!-- Hovered Hardcore and softcore -->
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding hardcore}" Value="True" />
                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
-                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
                                 </MultiDataTrigger.Conditions>
                                 <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Hovered_HC_Tab}" />
                             </MultiDataTrigger>
@@ -80,7 +71,6 @@
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding hardcore}" Value="False" />
                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="True" />
-                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=Self}}" Value="False" />
                                 </MultiDataTrigger.Conditions>
                                 <Setter TargetName="TabItemGrid" Property="Background" Value="{StaticResource Hovered_SC_Tab}" />
                             </MultiDataTrigger>
