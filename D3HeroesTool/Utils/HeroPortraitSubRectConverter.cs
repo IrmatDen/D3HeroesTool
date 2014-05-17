@@ -15,9 +15,6 @@ namespace D3HeroesTool.Utils
         // Will store <x, y> offsets of portraits
         private static Tuple<int, int>[,] coords;
 
-        private static readonly int[] Xs = new int[] { 0 /*male*/, PortraitWidth /*female*/ };
-        private static readonly int[] Ys = new int[] { 0 /*barbarian*/, PortraitWidth /*female*/ };
-
         private static void BuildPortraitsCoords()
         {
             coords = new Tuple<int, int>[Enum.GetNames(typeof(D3Class)).Length, Enum.GetNames(typeof(Gender)).Length];
