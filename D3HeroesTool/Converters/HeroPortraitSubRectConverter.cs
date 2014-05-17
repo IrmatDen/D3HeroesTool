@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace D3HeroesTool.Utils
+namespace D3HeroesTool.Converters
 {
     /// <summary>
     /// Converter used to get a region of a BitmapImage based on Hero

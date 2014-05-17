@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using D3HeroesTool.Extensions;
 
-namespace D3HeroesTool.Utils
+namespace D3HeroesTool.Behaviors
 {
     /// <summary>
     /// Allows to autosize (and eventually restrict minimum width of a) combobox from XAML

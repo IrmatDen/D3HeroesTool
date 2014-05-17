@@ -1,4 +1,5 @@
 ﻿using D3Data.Attributes;
+using D3HeroesTool.Converters;
 using D3HeroesTool.Utils;
 using NUnit.Framework;
 using System.Collections.ObjectModel;

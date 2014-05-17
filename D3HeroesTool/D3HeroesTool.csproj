@@ -84,7 +84,7 @@
     <Compile Include="Commands\DataContextCommandAdapter.cs" />
     <Compile Include="Commands\DataContextCommandBinding.cs" />
     <Compile Include="Commands\D3Commands.cs" />
-    <Compile Include="Utils\HeroPortraitSubRectConverter.cs" />
+    <Compile Include="Converters\HeroPortraitSubRectConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CareerViewModel.cs" />
     <Compile Include="ViewModels\SingleDownloadViewModel.cs" />
@@ -108,12 +108,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\BattleTagValidator.cs" />
-    <Compile Include="Utils\ComboBoxExtensionMethods.cs" />
-    <Compile Include="Utils\ComboBoxWidthFromItemBehavior.cs" />
-    <Compile Include="Utils\EnumDisplayer.cs" />
+    <Compile Include="Validators\BattleTagValidator.cs" />
+    <Compile Include="Extensions\ComboBoxExtensionMethods.cs" />
+    <Compile Include="Behaviors\ComboBoxWidthFromItemBehavior.cs" />
+    <Compile Include="Converters\EnumDisplayer.cs" />
     <Compile Include="Utils\SimpleBiMap.cs" />
-    <Compile Include="Utils\ValidationErrorConverter.cs" />
+    <Compile Include="Converters\ValidationErrorConverter.cs" />
     <Compile Include="Views\SingleDownloadView.xaml.cs">
       <DependentUpon>SingleDownloadView.xaml</DependentUpon>
     </Compile>

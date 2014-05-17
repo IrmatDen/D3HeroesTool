@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace D3HeroesTool.Utils
+namespace D3HeroesTool.Validators
 {
     /// <summary>
     /// Validates a battle tag according to following syntax:

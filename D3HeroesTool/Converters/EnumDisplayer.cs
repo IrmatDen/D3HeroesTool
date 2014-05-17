@@ -1,4 +1,5 @@
 ﻿using D3Data.Attributes;
+using D3HeroesTool.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using System.Resources;
 using System.Windows.Data;
 using WPFLocalizeExtension.Engine;
 
-namespace D3HeroesTool.Utils
+namespace D3HeroesTool.Converters
 {
     /// <summary>
     /// Allows automatic conversion from an enum to it's corresponding DisplayStringAttributes

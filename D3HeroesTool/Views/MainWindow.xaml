@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:D3HeroesTool" x:Class="D3HeroesTool.Views.MainWindow"
         xmlns:d3d="clr-namespace:D3Data;assembly=D3Data"
-        xmlns:d3htu="clr-namespace:D3HeroesTool.Utils"
+        xmlns:behav="clr-namespace:D3HeroesTool.Behaviors"
         xmlns:cmd="clr-namespace:D3HeroesTool.Commands"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:qc="clr-namespace:QuickConverter;assembly=QuickConverter"
+        xmlns:conv="clr-namespace:D3HeroesTool.Converters"
+        xmlns:valid="clr-namespace:D3HeroesTool.Validators"
         lex:LocalizeDictionary.DesignCulture="en"
         lex:ResxLocalizationProvider.DefaultAssembly="D3HeroesTool"
         lex:ResxLocalizationProvider.DefaultDictionary="ResourceStrings"
@@ -16,9 +18,9 @@
             <GradientStop Color="{StaticResource LightBrown}" Offset="0"/>
             <GradientStop Color="{StaticResource DarkBrown}" Offset="1"/>
         </LinearGradientBrush>
-        <d3htu:ValidationErrorConverter x:Key="ValidationErrorConverter" />
-        <d3htu:EnumDisplayer Type="{x:Type d3d:Server}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="ServersED" />
-        <d3htu:EnumDisplayer Type="{x:Type d3d:Locale}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="LocalesED" />
+        <conv:ValidationErrorConverter x:Key="ValidationErrorConverter" />
+        <conv:EnumDisplayer Type="{x:Type d3d:Server}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="ServersED" />
+        <conv:EnumDisplayer Type="{x:Type d3d:Locale}" ResourcesAssembly="D3Data" ResourcesRootName="resources" x:Key="LocalesED" />
         <ControlTemplate x:Key="validationTemplate">
             <DockPanel>
                 <TextBlock Foreground="Red" FontSize="25" VerticalAlignment="Top" Margin="0,-5,0,0" >!</TextBlock>
@@ -43,8 +45,8 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="AutoSizedComboBox" TargetType="ComboBox">
-            <Setter Property="d3htu:ComboBoxWidthFromItemBehavior.ComboBoxWidthFromItems" Value="True" />
-            <Setter Property="d3htu:ComboBoxWidthFromItemBehavior.ComboBoxRestrictMinWidthFromItems" Value="True" />
+            <Setter Property="behav:ComboBoxWidthFromItemBehavior.ComboBoxWidthFromItems" Value="True" />
+            <Setter Property="behav:ComboBoxWidthFromItemBehavior.ComboBoxRestrictMinWidthFromItems" Value="True" />
         </Style>
     </Window.Resources>
 
@@ -76,7 +78,7 @@
                 <TextBox.Text>
                     <Binding Path="BattleTag" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <d3htu:BattleTagValidator />
+                            <valid:BattleTagValidator />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>

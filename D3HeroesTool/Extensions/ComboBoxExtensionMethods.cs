@@ -5,7 +5,7 @@ using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace D3HeroesTool.Utils
+namespace D3HeroesTool.Extensions
 {
     public static class ComboBoxExtensionMethods
     {

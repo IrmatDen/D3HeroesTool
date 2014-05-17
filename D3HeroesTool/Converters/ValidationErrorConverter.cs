@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace D3HeroesTool.Utils
+namespace D3HeroesTool.Converters
 {
     /// <summary>
     /// Forwards a ValidationError's message as a string value
