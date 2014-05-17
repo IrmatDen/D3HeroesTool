@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Windows;
 
 namespace D3HeroesTool
@@ -22,6 +23,10 @@ namespace D3HeroesTool
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+#if FIDDLER
+            WebRequest.DefaultWebProxy = new WebProxy("127.0.0.1", 8888);
+#endif
+
             QuickConverter.EquationTokenizer.AddNamespace(typeof(object));
             QuickConverter.EquationTokenizer.AddNamespace(typeof(System.Windows.Visibility));
 
