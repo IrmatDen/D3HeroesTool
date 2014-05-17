@@ -8,6 +8,9 @@ namespace D3HeroesTool
 {
     public class FSBNetService : IBNetService
     {
+        /// <summary>
+        /// Delay before which json data is directly requested from battle.net instead of local cache
+        /// </summary>
         private static readonly TimeSpan ObsolescenceDelay = new TimeSpan(12, 0, 0);
 
         private IBNetService WebAccessor;
