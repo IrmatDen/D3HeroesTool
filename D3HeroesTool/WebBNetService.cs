@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace D3HeroesTool
 {
-    public class WebBNetService : IBNetService
+    public class WebBNetService : IBNetService, IDisposable
     {
         private WebClient wc = new WebClient();
 
@@ -22,6 +22,12 @@ namespace D3HeroesTool
             battleTagAccessor = battleTag.Replace('#', '-').ToLower();
             server = s;
             locale = l;
+        }
+
+        public void Dispose()
+        {
+            wc.Dispose();
+            GC.SuppressFinalize(this);
         }
 
         public void GetCareer(Action<string> onCareerJSonReceived, Action onError)

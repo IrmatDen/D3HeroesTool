@@ -32,5 +32,10 @@ namespace D3HeroesTool
             if (!Directory.Exists(FSProvider.RootFolder))
                 throw new Exception("Application cannot be used in a folder with readonly access.");
         }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            WebProvider.Dispose();
+        }
     }
 }
