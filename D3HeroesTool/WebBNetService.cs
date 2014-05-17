@@ -1,7 +1,10 @@
 ﻿using D3Data;
 using D3Data.Utils;
 using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace D3HeroesTool
@@ -14,6 +17,8 @@ namespace D3HeroesTool
         private Server server;
         private Locale locale;
 
+        private Dictionary<string, BitmapImage> backgrounds = null;
+
         public event DownloadCareerStartedEventHandler OnDownloadCareerStarted;
         public event DownloadCareerFinishedEventHandler OnDownloadCareerFinished;
 
@@ -22,6 +27,30 @@ namespace D3HeroesTool
             battleTagAccessor = battleTag.Replace('#', '-').ToLower();
             server = s;
             locale = l;
+
+            CacheBackgrounds();
+        }
+
+        private void CacheBackgrounds()
+        {
+            if (backgrounds != null)
+                return;
+
+            backgrounds = new Dictionary<string, BitmapImage>();
+            foreach (var c in typeof(D3Class).GetEnumValues())
+            {
+                string d3className = Misc.GetBackgroundNameForClass((D3Class)c);
+
+                string female = Gender.Female.ToString();
+                string key = (d3className + "-" + female).ToLower();
+                string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + key + ".jpg";
+                Application.Current.Dispatcher.Invoke(() => backgrounds.Add(key, new BitmapImage(new Uri(url))));
+
+                string male = Gender.Male.ToString();
+                key = (d3className + "-" + male).ToLower();
+                url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + key + ".jpg";
+                Application.Current.Dispatcher.Invoke(() => backgrounds.Add(key, new BitmapImage(new Uri(url))));
+            }
         }
 
         public void Dispose()
@@ -57,37 +86,31 @@ namespace D3HeroesTool
                 });
         }
 
-        public void GetBackground(HeroSummary hero, Action<BitmapImage> onImgReceived, Action onError)
+        public ImageSource GetBackground(HeroSummary hero)
         {
             string d3className = Misc.GetBackgroundNameForClass(hero.d3class);
-            string bgName = String.Format("{0}-{1}.jpg", d3className, hero.gender.ToString()).ToLower();
-            string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + bgName;
-            DownloadImage(url, onImgReceived, onError);
+            string bgKey = String.Format("{0}-{1}", d3className, hero.gender.ToString()).ToLower();
+
+            BitmapImage img = null;
+            if (!backgrounds.TryGetValue(bgKey, out img))
+                return null;
+
+            return img;
         }
 
-        public void GetPortraits(Action<BitmapImage> onImgReceived, Action onError)
+        public ImageSource GetPortraits()
         {
-            string url = "http://eu.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg";
-            DownloadImage(url, onImgReceived, onError);
+            return DownloadImage("http://eu.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg");
         }
 
-        public void GetTabStates(Action<BitmapImage> onImgReceived, Action onError)
+        public ImageSource GetTabStates()
         {
-            string url = "http://eu.battle.net/d3/static/images/profile/hero/hero-nav-frames.png";
-            DownloadImage(url, onImgReceived, onError);
+            return DownloadImage("http://eu.battle.net/d3/static/images/profile/hero/hero-nav-frames.png");
         }
 
-        private void DownloadImage(string url, Action<BitmapImage> onImgReceived, Action onError)
+        private ImageSource DownloadImage(string url)
         {
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            // Looks like caching gets in the way and deny access to image (rare phenomenon, but still 5-10% of the time)
-            // Since caching is done through FSBNetService, might as well disable that until more is understood...
-            image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            image.DownloadCompleted += (o, args) => onImgReceived(image);
-            image.DownloadFailed += (o, args) => onError();
-            image.UriSource = new Uri(url);
-            image.EndInit();
+            return new BitmapImage(new Uri(url));
         }
 
         #region Events

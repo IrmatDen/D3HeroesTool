@@ -14,7 +14,6 @@ namespace D3HeroesTool.ViewModels
             set
             {
                 _currentHero = value;
-                Reset();
                 OnPropertyChanged(null);
             }
         }
@@ -58,39 +57,13 @@ namespace D3HeroesTool.ViewModels
         }
         #endregion
 
-        ImageSource _bgSource;
-        bool _bgSourceRequested;
         public ImageSource Background
         {
             get
             {
-                if (CurrentHero == null)
-                    return null;
-
-                if (_bgSource == null && !_bgSourceRequested)
-                {
-                    _bgSourceRequested = true;
-                    App.FSProvider.GetBackground(CurrentHero,
-                        (img) => Background = img,
-                        () => { }
-                        );
-                }
-
-                return _bgSource;
-            }
-            set
-            {
-                _bgSource = value;
-                _bgSourceRequested = false;
-                OnPropertyChanged("Background");
+                return App.BNetService.GetBackground(_currentHero);
             }
         }
         #endregion
-
-        private void Reset()
-        {
-            _bgSource = null;
-            _bgSourceRequested = false;
-        }
     }
 }

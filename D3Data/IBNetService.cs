@@ -61,8 +61,8 @@ namespace D3Data
         void GetCareer(Action<string> onCareerJSonReceived, Action onError);
 
         // Media downloads
-        void GetBackground(HeroSummary hero, Action<BitmapImage> onImgReceived, Action onError);
-        void GetPortraits(Action<BitmapImage> onImgReceived, Action onError);
-        void GetTabStates(Action<BitmapImage> onImgReceived, Action onError);
+        ImageSource GetBackground(HeroSummary hero);
+        ImageSource GetPortraits();
+        ImageSource GetTabStates();
     }
 }

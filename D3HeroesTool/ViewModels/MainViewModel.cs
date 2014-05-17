@@ -35,8 +35,8 @@ namespace D3HeroesTool.ViewModels
         {
             _careerVM = new CareerViewModel();
 
-            App.WebProvider.OnDownloadCareerStarted += OnCareerDownloadStarted;
-            App.WebProvider.OnDownloadCareerFinished += OnCareerDownloadFinished;
+            App.BNetService.OnDownloadCareerStarted += OnCareerDownloadStarted;
+            App.BNetService.OnDownloadCareerFinished += OnCareerDownloadFinished;
         }
 
         #region Properties
@@ -112,16 +112,16 @@ namespace D3HeroesTool.ViewModels
 
             string errMsg = (string)LocalizeDictionary.Instance.GetLocalizedObject("D3HeroesTool", "ResourceStrings", "errRetrievingProfile",
                                                                                    LocalizeDictionary.Instance.Culture);
-            
-            App.FSProvider.Setup(Server, BattleTag, Locale);
-            App.FSProvider.GetCareer(
+
+            App.BNetService.Setup(Server, BattleTag, Locale);
+            App.BNetService.GetCareer(
                 (string json) => { _careerVM.Career = D3Data.Deserializer.AsCareer(json); ViewModel = _careerVM; },
                 () => { MessageBox.Show(errMsg, "D3HeroesTool", MessageBoxButton.OK, MessageBoxImage.Error); }
                 );
             
             // Load career's portraits and tab states as part of our download process
-            App.FSProvider.GetPortraits((img) => { _careerVM.Portraits = img; }, () => { });
-            App.FSProvider.GetTabStates((img) => { _careerVM.TabStates = img; }, () => { });
+            _careerVM.Portraits = App.BNetService.GetPortraits();
+            _careerVM.TabStates = App.BNetService.GetTabStates();
         }
         #endregion
 
