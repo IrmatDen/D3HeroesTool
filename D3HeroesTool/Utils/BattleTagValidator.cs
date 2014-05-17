@@ -13,8 +13,13 @@ namespace D3HeroesTool.Utils
     /// </summary>
     public class BattleTagValidator : ValidationRule
     {
+        public BattleTagValidator() { ValidatesOnTargetUpdated = true; }
+
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
+            if (value == null)
+                return new ValidationResult(false, "A valid BattleTag is of the form MyNickname#1234");
+
             string[] elems = ((string)value).Split('#');
             if (elems.Length != 2)
                 return new ValidationResult(false, "A valid BattleTag includes one, and only one, '#' (ex: MyNickname#1234)");
