@@ -176,3 +176,4 @@ UpgradeLog*.htm
 FakesAssemblies/
 settings.d3ht
 cache/*
+Help/*
