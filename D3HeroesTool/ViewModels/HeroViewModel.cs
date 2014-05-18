@@ -7,8 +7,8 @@ namespace D3HeroesTool.ViewModels
     public class HeroViewModel : BaseViewModel
     {
         #region Properties
-        private HeroSummary _currentHero;
-        public HeroSummary CurrentHero
+        private Hero _currentHero;
+        public Hero CurrentHero
         {
             get { return _currentHero; }
             set

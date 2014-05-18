@@ -16,7 +16,7 @@ namespace D3Data
             return career;
         }
 
-        public static void CompleteHero(string json, HeroSummary target)
+        public static void CompleteHero(string json, Hero target)
         {
             JsonConvert.PopulateObject(json, target);
         }

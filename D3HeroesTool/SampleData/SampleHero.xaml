@@ -7,6 +7,6 @@
     HeaderHardcoreSeparator="-"
     HeaderHardcore="Hardcore">
     <vm:HeroViewModel.CurrentHero>
-        <d:HeroSummary name="test" level="70" paragonLevel="224" d3class="Monk" />
+        <d:Hero name="test" level="70" paragonLevel="224" d3class="Monk" />
     </vm:HeroViewModel.CurrentHero>
 </vm:HeroViewModel>

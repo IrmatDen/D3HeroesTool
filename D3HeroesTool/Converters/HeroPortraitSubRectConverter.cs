@@ -59,7 +59,7 @@ namespace D3HeroesTool.Converters
             {
                 throw new ArgumentException(String.Format("{0} expects 2 objects of types {1} and {2}",
                     typeof(HeroPortraitSubRectConverter).ToString(),
-                    typeof(HeroSummary).ToString(),
+                    typeof(Hero).ToString(),
                     typeof(BitmapImage).ToString()));
             }
 
@@ -68,17 +68,17 @@ namespace D3HeroesTool.Converters
                 return null;
 
             // values checks
-            if (values[0].GetType() != typeof(HeroSummary) || values[1].GetType() != typeof(BitmapImage))
+            if (values[0].GetType() != typeof(Hero) || values[1].GetType() != typeof(BitmapImage))
             {
                 throw new ArgumentException(String.Format("{0} expects 2 objects of types {1} and {2}",
                     typeof(HeroPortraitSubRectConverter).ToString(),
-                    typeof(HeroSummary).ToString(),
+                    typeof(Hero).ToString(),
                     typeof(BitmapImage).ToString()));
             }
 
             BuildPortraitsCoords();
 
-            var hero = values[0] as HeroSummary;
+            var hero = values[0] as Hero;
             var img = values[1] as BitmapImage;
             if (hero != null && img != null)
             {

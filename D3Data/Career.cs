@@ -12,7 +12,7 @@ namespace D3Data
 
         [JsonProperty(Order=2)]
         [JsonConverter(typeof(Converters.HeroRefConverter))]
-        public HeroSummary lastHeroPlayed { get; set; }
+        public Hero lastHeroPlayed { get; set; }
 
         [JsonConverter(typeof(Converters.UnixTimestampConverter))]
         public DateTime lastUpdated { get; set; }
@@ -20,7 +20,7 @@ namespace D3Data
         public KillStats kills { get; set; }
 
         [JsonProperty(Order = 1)]
-        public SortedSet<HeroSummary> heroes { get; set; }
+        public SortedSet<Hero> heroes { get; set; }
 
         public Career() { }
     }

@@ -36,7 +36,7 @@ namespace D3Data.Converters
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(HeroSummary);
+            return objectType == typeof(Hero);
         }
     }
 }

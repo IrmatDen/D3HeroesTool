@@ -86,7 +86,7 @@ namespace D3HeroesTool
                 });
         }
 
-        public void GetHero(HeroSummary hero, Action<string> onHeroJSonReceived, Action onError)
+        public void GetHero(Hero hero, Action<string> onHeroJSonReceived, Action onError)
         {
             string heroUrl = "http://{0}.battle.net/api/d3/profile/{1}/hero/{2}?locale={3}";
             heroUrl = String.Format(heroUrl, new string[] { server.ToString(), battleTagAccessor,
@@ -113,7 +113,7 @@ namespace D3HeroesTool
                 });
         }
 
-        public ImageSource GetBackground(HeroSummary hero)
+        public ImageSource GetBackground(Hero hero)
         {
             string d3className = Misc.GetBackgroundNameForClass(hero.d3class);
             string bgKey = String.Format("{0}-{1}", d3className, hero.gender.ToString()).ToLower();

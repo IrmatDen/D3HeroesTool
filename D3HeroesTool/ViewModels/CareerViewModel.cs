@@ -7,7 +7,7 @@ namespace D3HeroesTool.ViewModels
     public class CareerViewModel : BaseViewModel
     {
         private Career _career;
-        private HeroSummary _heroSummary;
+        private Hero _heroSummary;
         private HeroViewModel _heroVM;
         private ImageSource _portraitsImg;
         private ImageSource _tabStates;
@@ -56,7 +56,7 @@ namespace D3HeroesTool.ViewModels
         /// <summary>
         /// Current hero selected (defaults to the last hero played after career is retrieved)
         /// </summary>
-        public HeroSummary Hero
+        public Hero Hero
         {
             get
             {
