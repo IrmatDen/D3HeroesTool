@@ -8,7 +8,7 @@
              xmlns:conv="clr-namespace:D3HeroesTool.Converters"
              xmlns:D3Data="clr-namespace:D3Data;assembly=D3Data" x:Class="D3HeroesTool.Views.HeroView"
              mc:Ignorable="d" 
-             d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645"
+             d:DesignHeight="645" d:DesignWidth="994" MinWidth="1200" MinHeight="645"
              d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}">
     <UserControl.Resources>
         <conv:SkillIconDisplayer x:Key="SkillIconDisplayer" />

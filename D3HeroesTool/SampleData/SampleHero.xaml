@@ -1,12 +1,24 @@
 ﻿<vm:HeroViewModel
     xmlns:vm="clr-namespace:D3HeroesTool.ViewModels"
     xmlns:d="clr-namespace:D3Data;assembly=D3Data"
-    Background="file://F:\src\D3HeroesTool\cache\static/barbarian-male.jpg"
+    Background="file://F:\src\D3HeroesTool\cache\static/witch-doctor-female.jpg"
     NameFirstLetter="K"
     NameOtherLetters="ALDORDRAIGO"
     HeaderHardcoreSeparator="-"
     HeaderHardcore="Hardcore">
     <vm:HeroViewModel.CurrentHero>
-        <d:Hero name="test" level="70" paragonLevel="224" d3class="Monk" />
+        <d:Hero name="test" level="70" paragonLevel="224" d3class="Monk">
+            <d:Hero.skills>
+                <d:SkillSet>
+                    <d:SkillSet.actives>
+                        <d:Skill>
+                            <d:Skill.skill>
+                                <!--<d:SkillDesc name="Skill Name" icon="witchdoctor_haunt"/>-->
+                            </d:Skill.skill>
+                        </d:Skill>
+                    </d:SkillSet.actives>
+                </d:SkillSet>
+            </d:Hero.skills>
+        </d:Hero>
     </vm:HeroViewModel.CurrentHero>
 </vm:HeroViewModel>
