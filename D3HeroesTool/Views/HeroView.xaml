@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fmt="clr-namespace:System.Windows.Documents;assembly=PresentationCore"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:c="clr-namespace:D3HeroesTool"
              xmlns:conv="clr-namespace:D3HeroesTool.Converters"
              xmlns:D3Data="clr-namespace:D3Data;assembly=D3Data" x:Class="D3HeroesTool.Views.HeroView"
@@ -60,30 +61,35 @@
             <TextBlock Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15"
 				TextAlignment="Center" Foreground="#FFD4B473"><Run Text="{Binding CurrentHero.level, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="(" Foreground="#FFA791C2" /><Run Text="{Binding CurrentHero.paragonLevel, Mode=OneWay}" Foreground="#FFA791C2" /><Run Text=")" Foreground="#FFA791C2" /><Run Text=" "/><Run Text="{Binding CurrentHero.d3class, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcoreSeparator, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcore, Mode=OneWay}" Foreground="Red" FontWeight="Bold" /></TextBlock>
         </Canvas>
-        <ListView DockPanel.Dock="Right" Margin="15,0,0,0" ItemsSource="{Binding CurrentHero.skills.actives}"
+        <Grid DockPanel.Dock="Right" Margin="15,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="275"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ListView Grid.Row="0" ItemsSource="{Binding CurrentHero.skills.actives}"
                   Background="{DynamicResource DarkBrownBrush}" BorderThickness="0"
                   VerticalAlignment="Top" Height="300">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="HoverColor" Color="#2C1E15"/>
-                        <SolidColorBrush x:Key="SelectedColor" Color="#6E5340"/>
-                    </Style.Resources>
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListViewItem">
-                                <Border Background="{TemplateBinding Background}" ToolTip="{StaticResource SkillsTooltip}"
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="HoverColor" Color="#2C1E15"/>
+                            <SolidColorBrush x:Key="SelectedColor" Color="#6E5340"/>
+                        </Style.Resources>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border Background="{TemplateBinding Background}" ToolTip="{StaticResource SkillsTooltip}"
                                         ToolTipService.ShowDuration="3600000">
-                                    <Border>
-                                        <Grid>
-                                            <GridViewRowPresenter Grid.RowSpan="0"   
+                                        <Border>
+                                            <Grid>
+                                                <GridViewRowPresenter Grid.RowSpan="0"   
                                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"   
                                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                        </Grid>
+                                            </Grid>
+                                        </Border>
                                     </Border>
-                                </Border>
-                                <ControlTemplate.Triggers>
+                                    <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="Background" Value="{StaticResource HoverColor}" />
                                             <Setter Property="BorderBrush" Value="Transparent"/>
@@ -92,36 +98,50 @@
                                             <Setter Property="Background" Value="{StaticResource SelectedColor}" />
                                             <Setter Property="BorderBrush" Value="Transparent"/>
                                         </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="GridViewColumnHeader">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="42" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.Column="0" Source="{Binding skill.icon, Converter={StaticResource SkillIconDisplayer}}"/>
-                                    <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="{Binding skill.name, Mode=OneWay}"
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="42" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="{Binding skill.icon, Converter={StaticResource SkillIconDisplayer}}"/>
+                                        <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="{Binding skill.name, Mode=OneWay}"
                                                VerticalAlignment="Center" Foreground="{DynamicResource TextLight}" />
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView Grid.Row="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Scenario" />
+                        <GridViewColumn Header="Min dmg" />
+                        <GridViewColumn Header="Max dmg" />
+                    </GridView>
+                </ListView.View>
+                <sys:String>White mob (no crit)</sys:String>
+                <sys:String>White mob (crit)</sys:String>
+                <sys:String>Elite (no crit)</sys:String>
+                <sys:String>Elite (crit)</sys:String>
+            </ListView>
+        </Grid>
     </DockPanel>
 </UserControl>
