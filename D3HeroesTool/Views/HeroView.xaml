@@ -12,6 +12,40 @@
              d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}">
     <UserControl.Resources>
         <conv:SkillIconDisplayer x:Key="SkillIconDisplayer" />
+        <ToolTip x:Key="SkillsTooltip" Placement="Top" MaxWidth="350" Background="{DynamicResource DarkBrownBrush}"
+                 DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+            <ToolTip.Content>
+                <StackPanel>
+                    <TextBlock Text="{Binding skill.name}" Foreground="{DynamicResource HeroNameColor}" FontSize="24"
+                               HorizontalAlignment="Center" Margin="0,0,0,35" />
+                    <Grid Margin="0,0,0,25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="42" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding skill.icon, Converter={StaticResource SkillIconDisplayer}}"
+                               HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        <TextBlock Grid.Column="1" Margin="25,0,0,0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"
+                                   Text="{Binding skill.description}" Foreground="{DynamicResource HeroInfoColor}"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="42" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Margin="25,0,0,10" FontSize="18"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"
+                                   Text="{Binding rune.name}" Foreground="{DynamicResource HeroNameColor}"/>
+                            <TextBlock Margin="25,0,0,0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"
+                                   Text="{Binding rune.description}" Foreground="{DynamicResource HeroInfoColor}"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ToolTip.Content>
+        </ToolTip>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <Canvas MinWidth="{Binding Background.Width}" MaxWidth="{Binding Background.Width}"
@@ -27,7 +61,7 @@
         </Canvas>
         <ListView DockPanel.Dock="Right" Margin="15,0,0,0" ItemsSource="{Binding CurrentHero.skills.actives}"
                   Background="{DynamicResource DarkBrownBrush}" BorderThickness="0"
-                  VerticalAlignment="Top" Height="300" >
+                  VerticalAlignment="Top" Height="300">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Style.Resources>
@@ -38,7 +72,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border Background="{TemplateBinding Background}">
+                                <Border Background="{TemplateBinding Background}" ToolTip="{StaticResource SkillsTooltip}">
                                     <Border>
                                         <Grid>
                                             <GridViewRowPresenter Grid.RowSpan="0"   
