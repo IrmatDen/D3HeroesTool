@@ -36,20 +36,20 @@ namespace D3HeroesTool
             if (backgrounds != null)
                 return;
 
+            Action<string, Gender> gen_img = (d3className, g) =>
+            {
+                string female = g.ToString();
+                string key = (d3className + "-" + female).ToLower();
+                string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + key + ".jpg";
+                Application.Current.Dispatcher.Invoke(() => backgrounds.Add(key, new BitmapImage(new Uri(url))));
+            };
+
             backgrounds = new Dictionary<string, BitmapImage>();
             foreach (var c in typeof(D3Class).GetEnumValues())
             {
                 string d3className = Misc.GetBackgroundNameForClass((D3Class)c);
-
-                string female = Gender.Female.ToString();
-                string key = (d3className + "-" + female).ToLower();
-                string url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + key + ".jpg";
-                Application.Current.Dispatcher.Invoke(() => backgrounds.Add(key, new BitmapImage(new Uri(url))));
-
-                string male = Gender.Male.ToString();
-                key = (d3className + "-" + male).ToLower();
-                url = "http://eu.battle.net/d3/static/images/profile/hero/paperdoll/" + key + ".jpg";
-                Application.Current.Dispatcher.Invoke(() => backgrounds.Add(key, new BitmapImage(new Uri(url))));
+                gen_img(d3className, Gender.Female);
+                gen_img(d3className, Gender.Male);
             }
         }
 

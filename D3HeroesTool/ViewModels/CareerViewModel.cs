@@ -1,6 +1,5 @@
 ﻿using D3Data;
 using System.Collections;
-using System.Linq;
 using System.Windows.Media;
 
 namespace D3HeroesTool.ViewModels
@@ -61,8 +60,6 @@ namespace D3HeroesTool.ViewModels
         {
             get
             {
-                if (_heroSummary == null && _career != null)
-                    _heroSummary = _career.lastHeroPlayed;
                 return _heroSummary;
             }
             set
