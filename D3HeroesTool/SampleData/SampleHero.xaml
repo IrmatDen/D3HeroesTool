@@ -8,17 +8,16 @@
     HeaderHardcore="Hardcore">
     <vm:HeroViewModel.CurrentHero>
         <d:Hero name="test" level="70" paragonLevel="224" d3class="Monk">
-            <d:Hero.skills>
+            <!--<d:Hero.skills>
                 <d:SkillSet>
                     <d:SkillSet.actives>
                         <d:Skill>
-                            <d:Skill.skill>
-                                <!--<d:SkillDesc name="Skill Name" icon="witchdoctor_haunt"/>-->
-                            </d:Skill.skill>
+                            <d:Skill.skill name="Skill name"/>
+                            <d:Skill.rune name="Rune name"/>
                         </d:Skill>
                     </d:SkillSet.actives>
                 </d:SkillSet>
-            </d:Hero.skills>
+            </d:Hero.skills> -->
         </d:Hero>
     </vm:HeroViewModel.CurrentHero>
 </vm:HeroViewModel>
