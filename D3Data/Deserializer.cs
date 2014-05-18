@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace D3Data
 {
@@ -16,9 +17,14 @@ namespace D3Data
             return career;
         }
 
+        private static HashSet<Hero> alreadyLoadedHeroes = new HashSet<Hero>();
         public static void CompleteHero(string json, Hero target)
         {
+            if (alreadyLoadedHeroes.Contains(target))
+                return;
+
             JsonConvert.PopulateObject(json, target);
+            alreadyLoadedHeroes.Add(target);
         }
     }
 }

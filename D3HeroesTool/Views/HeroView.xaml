@@ -28,7 +28,7 @@
         <ListView DockPanel.Dock="Right" Margin="5,0,0,0"
                   ItemsSource="{Binding CurrentHero.skills.actives}">
             <ListView.View>
-                <GridView AllowsColumnReorder="False">
+                <GridView>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -39,8 +39,6 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <!--<GridViewColumn Header="i" DisplayMemberBinding="{Binding skill.icon, Mode=OneWay}" />
-                    <GridViewColumn Header="Skill" DisplayMemberBinding="{Binding skill.name, Mode=OneWay}"/>-->
                 </GridView>
             </ListView.View>
         </ListView>
