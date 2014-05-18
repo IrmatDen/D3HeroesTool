@@ -1,28 +1,27 @@
-﻿<UserControl x:Class="D3HeroesTool.Views.HeroView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fmt="clr-namespace:System.Windows.Documents;assembly=PresentationCore"
              xmlns:c="clr-namespace:D3HeroesTool"
+             xmlns:D3Data="clr-namespace:D3Data;assembly=D3Data" x:Class="D3HeroesTool.Views.HeroView"
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645"
-             d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}" MaxWidth="994" MaxHeight="645">
-    <UserControl.Background>
-        <ImageBrush ImageSource="{Binding Background}" Stretch="None" />
-    </UserControl.Background>
-    <Canvas>
-        <TextBlock Width="700" Height="68" TextAlignment="Center" FontSize="48"
-                   FontFamily="../resources/#Exocet Light" Canvas.Right="15" Canvas.Top="56" Foreground="{StaticResource HeroNameColor}">
-            <Run FontSize="66" Text="{Binding Mode=OneWay, Path=NameFirstLetter}" BaselineAlignment="Center" /><Run Text="{Binding Mode=OneWay, Path=NameOtherLetters}" />
-        </TextBlock>
-        <TextBlock Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15"
-                   TextAlignment="Center" Foreground="#FFD4B473">
-            <Run Text="{Binding Mode=OneWay, Path=CurrentHero.level}" FontWeight="Bold" />
-            <Run Text="(" Foreground="#FFA791C2" /><Run Text="{Binding Mode=OneWay, Path=CurrentHero.paragonLevel}" Foreground="#FFA791C2" /><Run Text=")" Foreground="#FFA791C2" />
-            <Run Text="{Binding Mode=OneWay, Path=CurrentHero.d3class}" FontWeight="Bold" />
-            <Run Text="{Binding Mode=OneWay, Path=HeaderHardcoreSeparator}" FontWeight="Bold" />
-            <Run Text="{Binding Mode=OneWay, Path=HeaderHardcore}" Foreground="Red" FontWeight="Bold" />
-        </TextBlock>
-    </Canvas>
+             d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}">
+    <DockPanel LastChildFill="True">
+        <Canvas MinWidth="{Binding Background.Width}" MaxWidth="{Binding Background.Width}"
+                MinHeight="{Binding Background.Height}" MaxHeight="{Binding Background.Height}"
+                DockPanel.Dock="Left" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Canvas.Background>
+                <ImageBrush ImageSource="{Binding Background}" Stretch="None" />
+            </Canvas.Background>
+            <TextBlock Width="700" Height="68" TextAlignment="Center" FontSize="48"
+				FontFamily="../resources/#Exocet Light" Canvas.Right="15" Canvas.Top="56" Foreground="{StaticResource HeroNameColor}"><Run FontSize="66" Text="{Binding NameFirstLetter, Mode=OneWay}" BaselineAlignment="Center" /><Run Text="{Binding NameOtherLetters, Mode=OneWay}" /></TextBlock>
+            <TextBlock Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15"
+				TextAlignment="Center" Foreground="#FFD4B473"><Run Text="{Binding CurrentHero.level, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="(" Foreground="#FFA791C2" /><Run Text="{Binding CurrentHero.paragonLevel, Mode=OneWay}" Foreground="#FFA791C2" /><Run Text=")" Foreground="#FFA791C2" /><Run Text=" "/><Run Text="{Binding CurrentHero.d3class, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcoreSeparator, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcore, Mode=OneWay}" Foreground="Red" FontWeight="Bold" /></TextBlock>
+        </Canvas>
+        <ListView DockPanel.Dock="Right" Margin="5,0,0,0"
+                  ItemsSource="{Binding CurrentHero.skills.actives}"/>
+    </DockPanel>
 </UserControl>

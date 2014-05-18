@@ -144,7 +144,7 @@
             <DataTemplate>
                 <Views:HeroView DataContext="{Binding DataContext.HeroVM,
                                               RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             </DataTemplate>
         </TabControl.ContentTemplate>
     </TabControl>
