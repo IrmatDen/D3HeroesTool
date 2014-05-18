@@ -14,6 +14,8 @@
              d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}">
     <UserControl.Resources>
         <conv:SkillIconDisplayer x:Key="SkillIconDisplayer" />
+        <SolidColorBrush x:Key="DarkBrown" Color="#2C1E15"/>
+        <SolidColorBrush x:Key="MedBrown" Color="#6E5340"/>
         <ToolTip x:Key="SkillsTooltip" Placement="Top" MaxWidth="350" Background="{DynamicResource DarkBrownBrush}"
                  DataContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
             <ToolTip.Content>
@@ -48,6 +50,20 @@
                 </StackPanel>
             </ToolTip.Content>
         </ToolTip>
+        <Style x:Key="DmgSimHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="{StaticResource DarkBrown}"/>
+            <Setter Property="Foreground" Value="{DynamicResource HeroNameColor}"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GridViewColumnHeader">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="4,0,0,0" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <Canvas MinWidth="{Binding Background.Width}" MaxWidth="{Binding Background.Width}"
@@ -70,10 +86,6 @@
                   Background="{DynamicResource DarkBrownBrush}" BorderThickness="0" VerticalAlignment="Top" Height="300">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Style.Resources>
-                            <SolidColorBrush x:Key="HoverColor" Color="#2C1E15"/>
-                            <SolidColorBrush x:Key="SelectedColor" Color="#6E5340"/>
-                        </Style.Resources>
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="Template">
                             <Setter.Value>
@@ -90,11 +102,11 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="{StaticResource HoverColor}" />
+                                            <Setter Property="Background" Value="{StaticResource DarkBrown}" />
                                             <Setter Property="BorderBrush" Value="Transparent"/>
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="{StaticResource SelectedColor}" />
+                                            <Setter Property="Background" Value="{StaticResource MedBrown}" />
                                             <Setter Property="BorderBrush" Value="Transparent"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
@@ -128,9 +140,26 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Grid.Row="1" Visibility="{qc:Binding '$P != null ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedSkill}}">
+            <ListView Grid.Row="1" Background="{DynamicResource DarkBrownBrush}" Foreground="{DynamicResource HeroInfoColor}"
+                      BorderThickness="0" 
+                      Visibility="{qc:Binding '$P != null ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedSkill}}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Grid>
+                                        <GridViewRowPresenter Grid.RowSpan="0"   
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"   
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
-                    <GridView>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource DmgSimHeaderStyle}" AllowsColumnReorder="False">
                         <GridViewColumn Header="Scenario" />
                         <GridViewColumn Header="Min dmg" Width="100" />
                         <GridViewColumn Header="Max dmg" Width="100" />
