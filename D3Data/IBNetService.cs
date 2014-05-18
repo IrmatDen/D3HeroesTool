@@ -59,6 +59,7 @@ namespace D3Data
 
         // Data downloads
         void GetCareer(Action<string> onCareerJSonReceived, Action onError);
+        void GetHero(HeroSummary hero, Action<string> onHeroJSonReceived, Action onError);
 
         // Media downloads
         ImageSource GetBackground(HeroSummary hero);

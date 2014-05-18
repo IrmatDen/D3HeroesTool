@@ -86,6 +86,33 @@ namespace D3HeroesTool
                 });
         }
 
+        public void GetHero(HeroSummary hero, Action<string> onHeroJSonReceived, Action onError)
+        {
+            string heroUrl = "http://{0}.battle.net/api/d3/profile/{1}/hero/{2}?locale={3}";
+            heroUrl = String.Format(heroUrl, new string[] { server.ToString(), battleTagAccessor,
+                                      hero.id.ToString(), locale.ToString().Replace('_', '-') });
+
+            //RaiseStartEvent(new BNetDownloadStartedEventArgs(String.Format("Downloading {0}", battleTagAccessor)));
+            //BNetDownloadFinishedEventArgs finishedArgs = new BNetDownloadFinishedEventArgs();
+
+            wc.DownloadStringTaskAsync(heroUrl)
+                .ContinueWith(task =>
+                {
+                    //RaiseFinishedEvent(finishedArgs);
+
+                    if (!task.IsFaulted)
+                    {
+                        // Basic validation on what we got
+                        if (task.Result.Contains("\"reason\" : \"The hero could not be found.\""))
+                            onError();
+                        else
+                            onHeroJSonReceived(task.Result);
+                    }
+                    else
+                        onError();
+                });
+        }
+
         public ImageSource GetBackground(HeroSummary hero)
         {
             string d3className = Misc.GetBackgroundNameForClass(hero.d3class);

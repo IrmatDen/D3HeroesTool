@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace D3Data.Converters
 {
+    /// <summary>
+    /// Converts an hero id to a reference to an HeroSummary
+    /// </summary>
     class HeroRefConverter : JsonConverter
     {
         public static Career careerRef { get; set; }

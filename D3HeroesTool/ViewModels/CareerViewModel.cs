@@ -65,7 +65,11 @@ namespace D3HeroesTool.ViewModels
             set
             {
                 _heroSummary = value;
-                HeroVM.CurrentHero = _heroSummary;
+                App.BNetService.GetHero(_heroSummary,
+                    (string json) => { D3Data.Deserializer.CompleteHero(json, _heroSummary); HeroVM.CurrentHero = _heroSummary; },
+                    () => {  }
+                    );
+
                 OnPropertyChanged("Hero");
             }
         }
