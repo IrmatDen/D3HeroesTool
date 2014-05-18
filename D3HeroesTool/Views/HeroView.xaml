@@ -66,9 +66,8 @@
                 <RowDefinition Height="275"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <ListView Grid.Row="0" ItemsSource="{Binding CurrentHero.skills.actives}"
-                  Background="{DynamicResource DarkBrownBrush}" BorderThickness="0"
-                  VerticalAlignment="Top" Height="300">
+            <ListView Grid.Row="0" ItemsSource="{Binding CurrentHero.skills.actives}" SelectedItem="{Binding SelectedSkill}"
+                  Background="{DynamicResource DarkBrownBrush}" BorderThickness="0" VerticalAlignment="Top" Height="300">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Style.Resources>
@@ -129,12 +128,12 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Grid.Row="1">
+            <ListView Grid.Row="1" Visibility="{qc:Binding '$P != null ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedSkill}}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Scenario" />
-                        <GridViewColumn Header="Min dmg" />
-                        <GridViewColumn Header="Max dmg" />
+                        <GridViewColumn Header="Min dmg" Width="100" />
+                        <GridViewColumn Header="Max dmg" Width="100" />
                     </GridView>
                 </ListView.View>
                 <sys:String>White mob (no crit)</sys:String>

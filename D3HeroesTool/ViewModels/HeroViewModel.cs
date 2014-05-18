@@ -14,6 +14,7 @@ namespace D3HeroesTool.ViewModels
             set
             {
                 _currentHero = value;
+                Reset();
                 OnPropertyChanged(null);
             }
         }
@@ -66,6 +67,22 @@ namespace D3HeroesTool.ViewModels
                 return App.BNetService.GetBackground(_currentHero);
             }
         }
+
+        private Skill _selectedSkill = null;
+        public Skill SelectedSkill
+        {
+            get { return _selectedSkill; }
+            set
+            {
+                _selectedSkill = value;
+                OnPropertyChanged("SelectedSkill");
+            }
+        }
         #endregion
+
+        private void Reset()
+        {
+            _selectedSkill = null;
+        }
     }
 }
