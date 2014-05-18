@@ -25,17 +25,62 @@
             <TextBlock Height="auto" Width="700" TextWrapping="Wrap" Canvas.Top="39" Canvas.Right="15"
 				TextAlignment="Center" Foreground="#FFD4B473"><Run Text="{Binding CurrentHero.level, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="(" Foreground="#FFA791C2" /><Run Text="{Binding CurrentHero.paragonLevel, Mode=OneWay}" Foreground="#FFA791C2" /><Run Text=")" Foreground="#FFA791C2" /><Run Text=" "/><Run Text="{Binding CurrentHero.d3class, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcoreSeparator, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcore, Mode=OneWay}" Foreground="Red" FontWeight="Bold" /></TextBlock>
         </Canvas>
-        <ListView DockPanel.Dock="Right" Margin="5,0,0,0"
-                  ItemsSource="{Binding CurrentHero.skills.actives}">
+        <ListView DockPanel.Dock="Right" Margin="15,0,0,0" ItemsSource="{Binding CurrentHero.skills.actives}"
+                  Background="{DynamicResource DarkBrownBrush}" BorderThickness="0"
+                  VerticalAlignment="Top" Height="300" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="HoverColor" Color="#2C1E15"/>
+                        <SolidColorBrush x:Key="SelectedColor" Color="#6E5340"/>
+                    </Style.Resources>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border Background="{TemplateBinding Background}">
+                                    <Border>
+                                        <Grid>
+                                            <GridViewRowPresenter Grid.RowSpan="0"   
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"   
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#2C1E15" />
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#6E5340" />
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                        </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="GridViewColumnHeader">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding skill.icon, Converter={StaticResource SkillIconDisplayer}}"/>
-                                    <TextBlock Text="{Binding skill.name, Mode=OneWay}" />
-                                </StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="42" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="{Binding skill.icon, Converter={StaticResource SkillIconDisplayer}}"/>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="{Binding skill.name, Mode=OneWay}"
+                                               VerticalAlignment="Center" Foreground="{DynamicResource TextLight}" />
+                                </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
