@@ -65,5 +65,6 @@ namespace D3Data
         ImageSource GetBackground(Hero hero);
         ImageSource GetPortraits();
         ImageSource GetTabStates();
+        ImageSource GetIcon(string icon_name);
     }
 }

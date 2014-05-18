@@ -135,6 +135,11 @@ namespace D3HeroesTool
             return DownloadImage("http://eu.battle.net/d3/static/images/profile/hero/hero-nav-frames.png");
         }
 
+        public ImageSource GetIcon(string icon_name)
+        {
+            return DownloadImage(String.Format("http://media.blizzard.com/d3/icons/skills/42/{0}.png", icon_name));
+        }
+
         private ImageSource DownloadImage(string url)
         {
             return new BitmapImage(new Uri(url));

@@ -5,10 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fmt="clr-namespace:System.Windows.Documents;assembly=PresentationCore"
              xmlns:c="clr-namespace:D3HeroesTool"
+             xmlns:conv="clr-namespace:D3HeroesTool.Converters"
              xmlns:D3Data="clr-namespace:D3Data;assembly=D3Data" x:Class="D3HeroesTool.Views.HeroView"
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="994" MinWidth="994" MinHeight="645"
              d:DataContext="{d:DesignData Source=/SampleData/SampleHero.xaml}">
+    <UserControl.Resources>
+        <conv:SkillIconDisplayer x:Key="SkillIconDisplayer" />
+    </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <Canvas MinWidth="{Binding Background.Width}" MaxWidth="{Binding Background.Width}"
                 MinHeight="{Binding Background.Height}" MaxHeight="{Binding Background.Height}"
@@ -22,6 +26,23 @@
 				TextAlignment="Center" Foreground="#FFD4B473"><Run Text="{Binding CurrentHero.level, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="(" Foreground="#FFA791C2" /><Run Text="{Binding CurrentHero.paragonLevel, Mode=OneWay}" Foreground="#FFA791C2" /><Run Text=")" Foreground="#FFA791C2" /><Run Text=" "/><Run Text="{Binding CurrentHero.d3class, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcoreSeparator, Mode=OneWay}" FontWeight="Bold" /><Run Text=" "/><Run Text="{Binding HeaderHardcore, Mode=OneWay}" Foreground="Red" FontWeight="Bold" /></TextBlock>
         </Canvas>
         <ListView DockPanel.Dock="Right" Margin="5,0,0,0"
-                  ItemsSource="{Binding CurrentHero.skills.actives}"/>
+                  ItemsSource="{Binding CurrentHero.skills.actives}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding skill.icon, Converter={StaticResource SkillIconDisplayer}}"/>
+                                    <TextBlock Text="{Binding skill.name, Mode=OneWay}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <!--<GridViewColumn Header="i" DisplayMemberBinding="{Binding skill.icon, Mode=OneWay}" />
+                    <GridViewColumn Header="Skill" DisplayMemberBinding="{Binding skill.name, Mode=OneWay}"/>-->
+                </GridView>
+            </ListView.View>
+        </ListView>
     </DockPanel>
 </UserControl>
