@@ -73,7 +73,8 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
-                                <Border Background="{TemplateBinding Background}" ToolTip="{StaticResource SkillsTooltip}">
+                                <Border Background="{TemplateBinding Background}" ToolTip="{StaticResource SkillsTooltip}"
+                                        ToolTipService.ShowDuration="3600000">
                                     <Border>
                                         <Grid>
                                             <GridViewRowPresenter Grid.RowSpan="0"   
