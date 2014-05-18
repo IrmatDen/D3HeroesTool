@@ -13,22 +13,22 @@
     <UserControl.Resources>
         <conv:HeroPortraitSubRectConverter x:Key="HeroPortraitSubRectConverter" />
         <ImageBrush x:Key="Unselected_SC_Tab" ImageSource="{Binding DataContext.TabStates,
-                                                            RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                                            RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="0,124,1,1" />
         <ImageBrush x:Key="Selected_SC_Tab" ImageSource="{Binding DataContext.TabStates,
-                                                          RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" />
         <ImageBrush x:Key="Hovered_SC_Tab" ImageSource="{Binding DataContext.TabStates,
-                                                         RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                                         RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="0,248,1,1" />
         <ImageBrush x:Key="Unselected_HC_Tab" ImageSource="{Binding DataContext.TabStates,
-                                                            RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                                            RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="103,124,1,1" />
         <ImageBrush x:Key="Selected_HC_Tab" ImageSource="{Binding DataContext.TabStates,
-                                                          RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="103,0,1,1" />
         <ImageBrush x:Key="Hovered_HC_Tab" ImageSource="{Binding DataContext.TabStates,
-                                                         RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                                         RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute" Viewbox="103,248,1,1" />
         <Style x:Key="HardcoreDependantInfoColor" TargetType="TextBlock">
             <Style.Triggers>
