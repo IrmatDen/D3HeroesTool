@@ -61,6 +61,8 @@ namespace D3HeroesTool.ViewModels
         {
             get
             {
+                if (_currentHero == null)
+                    return null;
                 return App.BNetService.GetBackground(_currentHero);
             }
         }
