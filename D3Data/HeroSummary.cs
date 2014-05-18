@@ -25,6 +25,8 @@ namespace D3Data
         [JsonProperty(PropertyName = "class")]
         public D3Class d3class { get; set; }
 
+        public SkillSet skills { get; set; }
+
         public HeroSummary() { }
 
         public int CompareTo(Object other)
